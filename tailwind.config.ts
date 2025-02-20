@@ -23,6 +23,10 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      fontFamily: {
+        figtree: ["var(--font-figtree)", "sans-serif"],
+        poppins: ["var(--font-poppins)", "sans-serif"],
+      },
     },
   },
   plugins: [tailwindcssAnimate],
