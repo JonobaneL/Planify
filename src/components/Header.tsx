@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import Image from "next/image";
+import Image from 'next/image';
 import {
   LuBell,
   LuCircleHelp,
   LuSettings,
   LuUserRoundPlus,
-} from "react-icons/lu";
+} from 'react-icons/lu';
 
-import { useSidebarContext } from "@/context/SidebarProvider";
-import InviteUser from "@/app/(private)/_components/InviteUser";
+import InviteUser from '@/app/(private)/_components/InviteUser';
+import { useSidebarContext } from '@/context/SidebarProvider';
 
 const Header = () => {
   const { isOpen } = useSidebarContext();
@@ -17,11 +17,11 @@ const Header = () => {
     <header className="flex h-14 w-full items-center justify-between border-b bg-p-background pr-6 shadow-sm">
       <div
         className={`${
-          isOpen ? "w-60" : "w-16"
+          isOpen ? 'w-60' : 'w-16'
         } flex h-full items-center justify-center border-r shadow-sm`}
       >
         <p className="text-2xl font-semibold text-primary-b">
-          {isOpen ? "Planify" : "P"}
+          {isOpen ? 'Planify' : 'P'}
         </p>
       </div>
       <nav className="flex gap-1">
