@@ -28,7 +28,7 @@ export default function RootLayout({
       <body
         className={`${figtree.variable} ${poppins.variable} flex h-full min-h-dvh flex-col font-figtree antialiased`}
       >
-        <>{children}</>
+        <div className="flex flex-1 flex-col">{children}</div>
       </body>
     </html>
   );
