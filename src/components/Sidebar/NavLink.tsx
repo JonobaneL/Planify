@@ -23,7 +23,7 @@ const NavLink = ({ icon, title, link, activeState = false }: NavLinkProps) => {
   const isActive = path.includes(link);
   const getStyles = () => {
     if (isOpen) {
-      return 'gap-2 px-2 py-1';
+      return 'gap-2 px-3 py-1';
     }
     return 'gap-0 p-1 justify-center size-9';
   };
@@ -35,14 +35,18 @@ const NavLink = ({ icon, title, link, activeState = false }: NavLinkProps) => {
           <TooltipTrigger asChild>
             <div
               className={cn(
-                `text-primary hover:bg-primary group flex items-center rounded transition-colors duration-75 hover:text-white ${isActive && activeState ? 'bg-primary text-white' : ''}`,
+                `group flex h-9 items-center rounded text-white transition-colors duration-75 hover:bg-white/10 hover:text-white`,
                 styles,
+                isActive && activeState ? 'text-white' : 'text-white/70',
               )}
             >
               {icon}
               {isOpen && (
                 <p
-                  className={`text-primary transition-colors duration-75 group-hover:text-white ${isActive && activeState ? 'text-white' : ''}`}
+                  className={cn(
+                    'text-white/70 transition-colors duration-75 group-hover:text-white',
+                    isActive && activeState ? 'text-white' : 'text-white/70',
+                  )}
                 >
                   {title}
                 </p>
@@ -50,7 +54,7 @@ const NavLink = ({ icon, title, link, activeState = false }: NavLinkProps) => {
             </div>
           </TooltipTrigger>
           {!isOpen && (
-            <TooltipContent side="right" className="bg-primary rounded shadow">
+            <TooltipContent side="right" className="rounded bg-primary shadow">
               <p className="font-geist">{title}</p>
             </TooltipContent>
           )}

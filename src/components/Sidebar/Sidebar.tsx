@@ -4,9 +4,10 @@ import { CgArrowsExchange } from 'react-icons/cg';
 import { LuBookOpen, LuCalendarCheck, LuHouse, LuStar } from 'react-icons/lu';
 
 import { useSidebarContext } from '@/context/SidebarProvider';
+import { cn } from '@/lib/utils';
 
-import BoardsNav from './BoardsNav';
 import NavItem from './NavLink';
+import ProjectsNav from './ProjectsNav';
 
 const Sidebar = () => {
   const { isOpen, toggleSidebar } = useSidebarContext();
@@ -34,22 +35,32 @@ const Sidebar = () => {
   ];
   return (
     <div
-      className={`${isOpen ? 'w-60 py-5' : 'w-16 py-3'} relative flex-[0_0_auto] border-r bg-p-background`}
+      className={`${isOpen ? 'w-60 pb-5' : 'w-16 pb-3'} relative flex-[0_0_auto] bg-primary`}
     >
+      <div className="flex h-14 items-center justify-center px-5">
+        {!isOpen ? (
+          <p className="font-semibold text-white">P</p>
+        ) : (
+          <p className="font-medium text-white">Planify</p>
+        )}
+      </div>
       <button
-        className="absolute -right-2.5 top-2 flex size-5 items-center justify-center rounded-full border bg-p-background"
+        className="absolute -right-2.5 top-16 flex size-5 items-center justify-center rounded-full bg-primary"
         onClick={toggleSidebar}
       >
-        <CgArrowsExchange className="text-primary" size={18} />
+        <CgArrowsExchange className="text-white" size={18} />
       </button>
       <div
-        className={`flex flex-col items-center gap-0.5 ${isOpen ? 'px-5 pb-5' : 'px-3 pb-3'}`}
+        className={cn(
+          `flex flex-col items-center gap-0.5`,
+          isOpen ? 'px-4 pb-5' : 'px-3 pb-3',
+        )}
       >
         {navRoutes.map((route, index) => (
           <NavItem key={index} {...route} />
         ))}
       </div>
-      <BoardsNav />
+      <ProjectsNav />
     </div>
   );
 };

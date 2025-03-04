@@ -17,16 +17,17 @@ const EditNavItem = () => {
           variant="ghost"
           className="h-fit min-h-9 rounded px-2 py-1 [&_svg]:size-[18px]"
         >
-          <LuPencilLine className="text-primary-80" /> Edit
+          <LuPencilLine className="text-primary" />
+          Edit
         </Button>
       </PopoverTrigger>
       <PopoverContent align="end">
-        <h3 className="text-primary mb-2 font-medium">Display columns</h3>
+        <h3 className="mb-2 font-medium text-primary">Display columns</h3>
         <div className="mb-1 flex items-center gap-2">
           <label className="flex w-fit cursor-pointer items-center gap-2 text-sm">
             <Checkbox
               checked
-              className="border-primary-80 data-[state=checked]:bg-primary-80 rounded-sm"
+              className="rounded-sm border-primary data-[state=checked]:bg-primary"
             />
             All columns
           </label>
@@ -35,10 +36,10 @@ const EditNavItem = () => {
         <ul className="">
           {tableColumns.map((column, index) => (
             <li key={index}>
-              <label className="hover:bg-primary-10 flex min-h-[30px] cursor-pointer items-center gap-2 rounded-sm px-2.5 py-1 text-sm">
+              <label className="flex min-h-[30px] cursor-pointer items-center gap-2 rounded-sm px-2.5 py-1 text-sm hover:bg-primary-10">
                 <Checkbox
                   checked
-                  className="border-primary-80 data-[state=checked]:bg-primary-80 rounded-sm"
+                  className="rounded-sm border-primary data-[state=checked]:bg-primary"
                 />
                 {column}
               </label>

@@ -20,12 +20,14 @@ const InviteUser: React.FC<PropsWithChildren> = ({ children }) => {
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent
-        className="w-full max-w-[560px]"
+        className="w-full max-w-[560px] gap-6"
         aria-describedby="invite-user"
       >
         <DialogHeader>
           <DialogTitle className="flex items-start justify-between">
-            <p className="font-poppins text-3xl">Invite to Planify</p>
+            <p className="font-poppins text-3xl text-primary">
+              Invite to Planify
+            </p>
             <DialogClose asChild>
               <button>
                 <IoCloseOutline size={22} />
@@ -44,7 +46,9 @@ const InviteUser: React.FC<PropsWithChildren> = ({ children }) => {
             <Textarea placeholder="Add a message for a new member" />
           </div>
           <div className="flex justify-end">
-            <Button className="px-5 text-base">Invite</Button>
+            <Button className="h-10 w-28 rounded-full px-6 text-base">
+              Invite
+            </Button>
           </div>
         </div>
       </DialogContent>
