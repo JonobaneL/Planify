@@ -1,21 +1,21 @@
-"use client";
-import { useState } from "react";
+'use client';
+import { useState } from 'react';
 
 const priorities = [
   {
-    id: "priority1",
-    name: "Low",
-    color: "#79AFFD",
+    id: 'priority1',
+    name: 'Low',
+    color: '#79AFFD',
   },
   {
-    id: "priority2",
-    name: "Middle",
-    color: "#6C6FCF",
+    id: 'priority2',
+    name: 'Middle',
+    color: '#6C6FCF',
   },
   {
-    id: "priority3",
-    name: "High",
-    color: "#5E429C",
+    id: 'priority3',
+    name: 'High',
+    color: '#5E429C',
   },
 ];
 
@@ -34,10 +34,13 @@ const PriorityFilter = () => {
         {priorities.map((priority) => (
           <button
             key={priority.id}
-            className={`flex min-h-[30px] w-full min-w-32 cursor-pointer items-center gap-2 rounded-sm border px-2.5 py-1 hover:bg-primary-b-10 ${checked.includes(priority.id) ? "bg-primary-b-10" : ""}`}
+            className={`hover:bg-primary-10 flex min-h-[30px] w-full min-w-32 cursor-pointer items-center gap-2 rounded-sm border px-2.5 py-1 ${checked.includes(priority.id) ? 'bg-primary-10' : ''}`}
             onClick={() => handleCheck(priority.id)}
           >
-            <div className="size-3 rounded-sm" style={{ backgroundColor: priority.color }} />
+            <div
+              className="size-3 rounded-sm"
+              style={{ backgroundColor: priority.color }}
+            />
             <p className="text-sm">{priority.name}</p>
           </button>
         ))}

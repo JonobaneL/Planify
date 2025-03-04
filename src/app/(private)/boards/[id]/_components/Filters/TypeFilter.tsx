@@ -1,21 +1,21 @@
-"use client";
-import { useState } from "react";
+'use client';
+import { useState } from 'react';
 
 const types = [
   {
-    id: "type1",
-    name: "Feature",
-    color: "#009933",
+    id: 'type1',
+    name: 'Feature',
+    color: '#009933',
   },
   {
-    id: "type2",
-    name: "Task",
-    color: "#ffa64d",
+    id: 'type2',
+    name: 'Task',
+    color: '#ffa64d',
   },
   {
-    id: "type3",
-    name: "Bug",
-    color: "#ff471a",
+    id: 'type3',
+    name: 'Bug',
+    color: '#ff471a',
   },
 ];
 
@@ -34,10 +34,13 @@ const TypeFilter = () => {
         {types.map((type) => (
           <button
             key={type.id}
-            className={`flex min-h-[30px] w-full min-w-32 cursor-pointer items-center gap-2 rounded-sm border px-2.5 py-1 hover:bg-primary-b-10 ${checked.includes(type.id) ? "bg-primary-b-10" : ""}`}
+            className={`hover:bg-primary-10 flex min-h-[30px] w-full min-w-32 cursor-pointer items-center gap-2 rounded-sm border px-2.5 py-1 ${checked.includes(type.id) ? 'bg-primary-10' : ''}`}
             onClick={() => handleCheck(type.id)}
           >
-            <div className="size-3 rounded-sm" style={{ backgroundColor: type.color }} />
+            <div
+              className="size-3 rounded-sm"
+              style={{ backgroundColor: type.color }}
+            />
             <p className="text-sm">{type.name}</p>
           </button>
         ))}

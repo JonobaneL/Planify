@@ -1,26 +1,26 @@
-"use client";
-import { useState } from "react";
+'use client';
+import { useState } from 'react';
 
 const estimations = [
   {
-    id: "estimation1",
-    name: "1",
+    id: 'estimation1',
+    name: '1',
   },
   {
-    id: "estimation2",
-    name: "3",
+    id: 'estimation2',
+    name: '3',
   },
   {
-    id: "estimation3",
-    name: "5",
+    id: 'estimation3',
+    name: '5',
   },
   {
-    id: "estimation4",
-    name: "8",
+    id: 'estimation4',
+    name: '8',
   },
   {
-    id: "estimation5",
-    name: "12",
+    id: 'estimation5',
+    name: '12',
   },
 ];
 
@@ -39,7 +39,7 @@ const EstimationFilter = () => {
         {estimations.map((estimation) => (
           <button
             key={estimation.id}
-            className={`flex min-h-[30px] w-fit min-w-[30px] cursor-pointer items-center justify-center gap-2 rounded-sm border px-2.5 py-1 text-sm hover:bg-primary-b-10 ${checked.includes(estimation.id) ? "bg-primary-b-10" : ""}`}
+            className={`hover:bg-primary-10 flex min-h-[30px] w-fit min-w-[30px] cursor-pointer items-center justify-center gap-2 rounded-sm border px-2.5 py-1 text-sm ${checked.includes(estimation.id) ? 'bg-primary-10' : ''}`}
             onClick={() => handleCheck(estimation.id)}
           >
             {estimation.name}

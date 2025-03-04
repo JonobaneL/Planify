@@ -1,8 +1,8 @@
 import { LuCircle, LuCircleCheckBig } from 'react-icons/lu';
 
-import { PASSWORD_STEPS } from '../utils/constants';
-
 import { cn } from '@/lib/utils';
+
+import { PASSWORD_STEPS } from '../utils/constants';
 
 type StrengthProps = {
   password: string;
@@ -17,7 +17,7 @@ const PasswordStrength: React.FC<StrengthProps> = ({ password }) => {
         return (
           <li key={step.key} className="flex items-center gap-2">
             {isValid ? (
-              <LuCircleCheckBig size={14} className="text-primary-b-80" />
+              <LuCircleCheckBig size={14} className="text-primary-80" />
             ) : (
               <LuCircle size={14} className="text-gray-400" />
             )}
@@ -25,7 +25,7 @@ const PasswordStrength: React.FC<StrengthProps> = ({ password }) => {
             <p
               className={cn(
                 'text-sm',
-                isValid ? 'text-primary-b-80' : 'text-gray-400',
+                isValid ? 'text-primary-80' : 'text-gray-400',
               )}
             >
               {step.label}

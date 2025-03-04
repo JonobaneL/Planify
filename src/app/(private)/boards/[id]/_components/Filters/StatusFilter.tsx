@@ -1,31 +1,31 @@
-"use client";
-import { useState } from "react";
+'use client';
+import { useState } from 'react';
 
 const statuses = [
   {
-    id: "status1",
-    name: "Not Started",
-    color: "#797E93",
+    id: 'status1',
+    name: 'Not Started',
+    color: '#797E93',
   },
   {
-    id: "status2",
-    name: "In Progress",
-    color: "#DEA761",
+    id: 'status2',
+    name: 'In Progress',
+    color: '#DEA761',
   },
   {
-    id: "status3",
-    name: "In Review",
-    color: "#4C18DC",
+    id: 'status3',
+    name: 'In Review',
+    color: '#4C18DC',
   },
   {
-    id: "status4",
-    name: "In QA",
-    color: "#885A95",
+    id: 'status4',
+    name: 'In QA',
+    color: '#885A95',
   },
   {
-    id: "status5",
-    name: "Done",
-    color: "#175A63",
+    id: 'status5',
+    name: 'Done',
+    color: '#175A63',
   },
 ];
 
@@ -44,10 +44,13 @@ const StatusFilter = () => {
         {statuses.map((status) => (
           <button
             key={status.id}
-            className={`flex min-h-[30px] w-full min-w-32 cursor-pointer items-center gap-2 rounded-sm border px-2.5 py-1 hover:bg-primary-b-10 ${checked.includes(status.id) ? "bg-primary-b-10" : ""}`}
+            className={`hover:bg-primary-10 flex min-h-[30px] w-full min-w-32 cursor-pointer items-center gap-2 rounded-sm border px-2.5 py-1 ${checked.includes(status.id) ? 'bg-primary-10' : ''}`}
             onClick={() => handleCheck(status.id)}
           >
-            <div className="size-3 rounded-sm" style={{ backgroundColor: status.color }} />
+            <div
+              className="size-3 rounded-sm"
+              style={{ backgroundColor: status.color }}
+            />
             <p className="text-sm">{status.name}</p>
           </button>
         ))}

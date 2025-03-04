@@ -20,24 +20,24 @@ const Header = () => {
           isOpen ? 'w-60' : 'w-16'
         } flex h-full items-center justify-center border-r shadow-sm`}
       >
-        <p className="text-2xl font-semibold text-primary-b">
+        <p className="text-primary text-2xl font-semibold">
           {isOpen ? 'Planify' : 'P'}
         </p>
       </div>
       <nav className="flex gap-1">
         <div className="rounded p-1.5 hover:bg-gray-100">
-          <LuBell size={20} className="text-primary-b" />
+          <LuBell size={20} className="text-primary" />
         </div>
         <InviteUser>
           <button className="rounded p-1.5 hover:bg-gray-100">
-            <LuUserRoundPlus size={20} className="text-primary-b" />
+            <LuUserRoundPlus size={20} className="text-primary" />
           </button>
         </InviteUser>
         <div className="rounded p-1.5 hover:bg-gray-100">
-          <LuSettings size={20} className="text-primary-b" />
+          <LuSettings size={20} className="text-primary" />
         </div>
         <div className="rounded p-1.5 hover:bg-gray-100">
-          <LuCircleHelp size={20} className="text-primary-b" />
+          <LuCircleHelp size={20} className="text-primary" />
         </div>
         <div className="pl-1.5">
           <Image src="/profile.svg" alt="avatar" width={32} height={32} />

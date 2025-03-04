@@ -30,7 +30,7 @@ const SignUpForm: React.FC = () => {
   };
 
   const password = watch('password');
-  console.log(password);
+
   return (
     <form
       onSubmit={handleSubmit(submitHandler)}
@@ -52,28 +52,28 @@ const SignUpForm: React.FC = () => {
         placeholder="Email Address"
         {...register('email')}
         errorMessage={errors.email?.message}
-        icon={<LuMail size={18} className="text-primary-b-80" />}
+        icon={<LuMail size={18} className="text-primary-80" />}
       />
       <Input
         placeholder="Username"
         {...register('username')}
         errorMessage={errors.username?.message}
-        icon={<LuCircleUser size={18} className="text-primary-b-80" />}
+        icon={<LuCircleUser size={18} className="text-primary-80" />}
       />
       <Input
         placeholder="Password"
         {...register('password')}
         errorMessage={errors.password?.message}
-        icon={<LuLockKeyhole className="text-primary-b-80" size={18} />}
+        icon={<LuLockKeyhole className="text-primary-80" size={18} />}
       />
       <PasswordStrength password={password} />
       <Input
         placeholder="Confirm Password"
         {...register('confirmPassword')}
         errorMessage={errors.confirmPassword?.message}
-        icon={<LuLockKeyhole className="text-primary-b-80" size={18} />}
+        icon={<LuLockKeyhole className="text-primary-80" size={18} />}
       />
-      <Button className="mx-auto mt-6 block h-10 w-[60%] bg-primary-b text-base hover:bg-primary-b-80">
+      <Button className="bg-primary hover:bg-primary-80 mx-auto mt-6 block h-10 w-[60%] text-base">
         Sign Up
       </Button>
     </form>

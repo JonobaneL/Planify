@@ -1,10 +1,15 @@
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
-import { useSidebarContext } from "@/context/SidebarProvider";
-import { cn } from "@/lib/utils";
+import { useSidebarContext } from '@/context/SidebarProvider';
+import { cn } from '@/lib/utils';
 
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../ui/tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '../ui/tooltip';
 
 type NavLinkProps = {
   icon: React.ReactNode;
@@ -18,26 +23,26 @@ const NavLink = ({ icon, title, link, activeState = false }: NavLinkProps) => {
   const isActive = path.includes(link);
   const getStyles = () => {
     if (isOpen) {
-      return "gap-2 px-2 py-1";
+      return 'gap-2 px-2 py-1';
     }
-    return "gap-0 p-1 justify-center size-9";
+    return 'gap-0 p-1 justify-center size-9';
   };
   const styles = getStyles();
   return (
-    <Link href={link} className={isOpen ? "w-full" : "w-fit"}>
+    <Link href={link} className={isOpen ? 'w-full' : 'w-fit'}>
       <TooltipProvider>
         <Tooltip delayDuration={300} disableHoverableContent={true}>
           <TooltipTrigger asChild>
             <div
               className={cn(
-                `group flex items-center rounded text-primary-b transition-colors duration-75 hover:bg-primary-b hover:text-white ${isActive && activeState ? "bg-primary-b text-white" : ""}`,
-                styles
+                `text-primary hover:bg-primary group flex items-center rounded transition-colors duration-75 hover:text-white ${isActive && activeState ? 'bg-primary text-white' : ''}`,
+                styles,
               )}
             >
               {icon}
               {isOpen && (
                 <p
-                  className={`text-primary-b transition-colors duration-75 group-hover:text-white ${isActive && activeState ? "text-white" : ""}`}
+                  className={`text-primary transition-colors duration-75 group-hover:text-white ${isActive && activeState ? 'text-white' : ''}`}
                 >
                   {title}
                 </p>
@@ -45,7 +50,7 @@ const NavLink = ({ icon, title, link, activeState = false }: NavLinkProps) => {
             </div>
           </TooltipTrigger>
           {!isOpen && (
-            <TooltipContent side="right" className="rounded bg-primary-b shadow">
+            <TooltipContent side="right" className="bg-primary rounded shadow">
               <p className="font-geist">{title}</p>
             </TooltipContent>
           )}

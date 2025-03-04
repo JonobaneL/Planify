@@ -38,7 +38,7 @@ const EmailField: React.FC = () => {
             <li
               key={index}
               onClick={() => handleRemove(email)}
-              className="flex w-fit cursor-pointer items-center gap-2 rounded bg-primary-b-80 px-2 py-1 text-sm text-white"
+              className="bg-primary-80 flex w-fit cursor-pointer items-center gap-2 rounded px-2 py-1 text-sm text-white"
             >
               <span>{email}</span>
               <IoCloseOutline size={14} color="#fff" />
