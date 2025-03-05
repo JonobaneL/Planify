@@ -13,10 +13,7 @@ const EditNavItem = () => {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button
-          variant="ghost"
-          className="h-fit min-h-9 rounded px-2 py-1 [&_svg]:size-[18px]"
-        >
+        <Button variant="ghost" size="sm" className="[&_svg]:size-[18px]">
           <LuPencilLine className="text-primary" />
           Edit
         </Button>

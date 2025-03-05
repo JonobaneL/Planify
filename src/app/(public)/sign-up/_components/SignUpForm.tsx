@@ -64,6 +64,7 @@ const SignUpForm: React.FC = () => {
         placeholder="Password"
         {...register('password')}
         errorMessage={errors.password?.message}
+        type="password"
         icon={<LuLockKeyhole className="text-primary-80" size={18} />}
       />
       <PasswordStrength password={password} />
@@ -71,9 +72,10 @@ const SignUpForm: React.FC = () => {
         placeholder="Confirm Password"
         {...register('confirmPassword')}
         errorMessage={errors.confirmPassword?.message}
+        type="password"
         icon={<LuLockKeyhole className="text-primary-80" size={18} />}
       />
-      <Button className="bg-primary hover:bg-primary-80 mx-auto mt-6 block h-10 w-[60%] text-base">
+      <Button size="lg" className="mx-auto mt-6 block w-[60%]">
         Sign Up
       </Button>
     </form>

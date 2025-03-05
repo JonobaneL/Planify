@@ -46,9 +46,7 @@ const InviteUser: React.FC<PropsWithChildren> = ({ children }) => {
             <Textarea placeholder="Add a message for a new member" />
           </div>
           <div className="flex justify-end">
-            <Button className="h-10 w-28 rounded-full px-6 text-base">
-              Invite
-            </Button>
+            <Button className="w-28 rounded-full px-6 text-base">Invite</Button>
           </div>
         </div>
       </DialogContent>
