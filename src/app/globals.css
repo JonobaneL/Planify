@@ -15,6 +15,9 @@
   }
 }
 
+html,
 body {
   font-family: var(--font-figtree);
+  overscroll-behavior: none; /* Prevents the rubber band effect*/
+  -webkit-overflow-scrolling: touch;
 }

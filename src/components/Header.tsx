@@ -15,7 +15,7 @@ import { Button } from './ui/button';
 
 const Header = () => {
   return (
-    <header className="flex h-[60px] w-full items-center justify-between border-b px-6">
+    <header className="sticky top-0 z-10 flex h-[60px] w-full items-center justify-between border-b bg-white px-6 shadow-sm">
       {/* show this button only on project pages */}
       <Button className="h-fit rounded-full" variant="outline">
         <LuPlus />

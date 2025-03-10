@@ -9,9 +9,9 @@ export default function PrivateLayout({
 }) {
   return (
     <SidebarProvider>
-      <div className="flex h-full flex-1 items-stretch">
+      <div className="flex h-dvh max-h-dvh min-h-dvh flex-1">
         <Sidebar />
-        <div className="w-full flex-1 overflow-auto">
+        <div className="h-dvh w-full flex-1 overflow-auto">
           <Header />
           <div className="w-full flex-1 overflow-auto px-8 pb-6 pt-4">
             {children}
