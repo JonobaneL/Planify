@@ -7,9 +7,9 @@ import {
   LuTable2,
 } from 'react-icons/lu';
 
-import NavItem from './NavLink';
-
 import { useSidebarContext } from '@/context/SidebarProvider';
+
+import NavItem from './NavLink';
 
 const ProjectsNav = () => {
   const { isOpen } = useSidebarContext();

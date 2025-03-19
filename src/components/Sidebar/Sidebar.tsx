@@ -1,7 +1,12 @@
 'use client';
 
 import { CgArrowsExchange } from 'react-icons/cg';
-import { LuBookOpen, LuCalendarCheck, LuHouse, LuStar } from 'react-icons/lu';
+import {
+  LuCalendarCheck,
+  LuHouse,
+  LuNotebookPen,
+  LuStar,
+} from 'react-icons/lu';
 
 import { useSidebarContext } from '@/context/SidebarProvider';
 import { cn } from '@/lib/utils';
@@ -28,9 +33,9 @@ const Sidebar = () => {
       icon: <LuStar />,
     },
     {
-      title: 'Knowledge base',
+      title: 'Notes',
       link: '/articles',
-      icon: <LuBookOpen />,
+      icon: <LuNotebookPen />,
     },
   ];
   return (
