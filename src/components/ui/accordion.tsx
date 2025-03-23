@@ -30,7 +30,7 @@ const AccordionTrigger = React.forwardRef<
   HTMLButtonElement,
   AccordionTriggerProps
 >(({ className, children, iconClassName, iconPosition, ...props }, ref) => (
-  <AccordionPrimitive.Header className="flex">
+  <AccordionPrimitive.Header className="flex border-b">
     <AccordionPrimitive.Trigger
       ref={ref}
       className={cn(

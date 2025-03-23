@@ -1,1 +1,9 @@
-export const tableColumns = ["Status", "Priority", "Assignee", "Estimation", "Due date", "Owner"];
+export const tableColumns = [
+  'Slug',
+  'Status',
+  'Priority',
+  'Assignee',
+  'Estimation',
+  'Due date',
+  'Team',
+];

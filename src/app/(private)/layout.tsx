@@ -13,7 +13,7 @@ export default function PrivateLayout({
         <Sidebar />
         <div className="h-dvh w-full flex-1 overflow-auto">
           <Header />
-          <div className="w-full flex-1 overflow-auto px-8 pb-6 pt-4">
+          <div className="w-full flex-1 overflow-auto pb-6 pt-4">
             {children}
           </div>
         </div>

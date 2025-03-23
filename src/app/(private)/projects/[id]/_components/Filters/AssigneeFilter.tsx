@@ -1,54 +1,26 @@
 'use client';
 import Image from 'next/image';
-import { LuChevronsUpDown } from 'react-icons/lu';
+import { useState } from 'react';
 import { IoIosClose } from 'react-icons/io';
+import { LuChevronsUpDown } from 'react-icons/lu';
 
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
-import { useState } from 'react';
+import { usersMock } from '@/data/mock/mockUsers';
+import { User } from '@/types/user';
 
-const mockUsers = [
-  {
-    id: 'user1',
-    name: 'John Doe',
-    username: 'johndoe',
-    avatar:
-      'https://images.unsplash.com/photo-1499714608240-22fc6ad53fb2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  },
-  {
-    id: 'user2',
-    name: 'Any Christen',
-    username: 'any_christen',
-    avatar:
-      'https://images.unsplash.com/photo-1499714608240-22fc6ad53fb2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  },
-  {
-    id: 'user3',
-    name: 'Mike Tyson',
-    username: 'miketyson',
-    avatar:
-      'https://images.unsplash.com/photo-1499714608240-22fc6ad53fb2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  },
-  {
-    id: 'user4',
-    name: 'Sam Smith',
-    username: 'samsmith',
-    avatar:
-      'https://images.unsplash.com/photo-1499714608240-22fc6ad53fb2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  },
-] as const;
 const AssigneeFilter = () => {
   //temporary approach
-  const [users, setUsers] = useState(mockUsers);
-  const [selected, setSelected] = useState<(typeof users)[]>([]);
-  const removeUser = (user) => {
+  const [users, setUsers] = useState(usersMock);
+  const [selected, setSelected] = useState<User[]>([]);
+  const removeUser = (user: User) => {
     setSelected((p) => p.filter((u) => user.id !== u.id));
     setUsers((p) => [...p, user]);
   };
-  const handleClick = (user) => {
+  const handleClick = (user: User) => {
     setSelected((p) => [...p, user]);
     setUsers((p) => p.filter((u) => u.id !== user.id));
   };
@@ -76,7 +48,7 @@ const AssigneeFilter = () => {
 
         <Popover>
           <PopoverTrigger asChild>
-            <button className="hover:bg-primary-10 flex h-9 min-w-56 items-center justify-between gap-2 rounded border px-2.5 py-1 text-sm text-gray-400">
+            <button className="flex h-9 min-w-56 items-center justify-between gap-2 rounded border px-2.5 py-1 text-sm text-gray-400 hover:bg-primary-10">
               <p>Select assignee</p>
               <LuChevronsUpDown className="text-gray-400" />
             </button>
@@ -85,11 +57,11 @@ const AssigneeFilter = () => {
             {users.map((user) => (
               <div
                 key={user.id}
-                className="hover:bg-primary-10 flex cursor-pointer items-center gap-2 px-2.5 py-1.5"
+                className="flex cursor-pointer items-center gap-2 px-2.5 py-1.5 hover:bg-primary-10"
                 onClick={() => handleClick(user)}
               >
                 <Image
-                  src={user.avatar}
+                  src={user.avatar || ''}
                   alt={user.username}
                   width={24}
                   height={24}

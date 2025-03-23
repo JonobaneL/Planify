@@ -24,11 +24,11 @@ const EditNavItem = () => {
           <label className="flex w-fit cursor-pointer items-center gap-2 text-sm">
             <Checkbox
               checked
-              className="rounded-sm border-primary data-[state=checked]:bg-primary"
+              className="border-primary data-[state=checked]:bg-primary"
             />
             All columns
           </label>
-          <p className="text-xs">6 selected</p>
+          <p className="text-xs">7 selected</p>
         </div>
         <ul className="">
           {tableColumns.map((column, index) => (
@@ -36,7 +36,7 @@ const EditNavItem = () => {
               <label className="flex min-h-[30px] cursor-pointer items-center gap-2 rounded-sm px-2.5 py-1 text-sm hover:bg-primary-10">
                 <Checkbox
                   checked
-                  className="rounded-sm border-primary data-[state=checked]:bg-primary"
+                  className="border-primary data-[state=checked]:bg-primary"
                 />
                 {column}
               </label>

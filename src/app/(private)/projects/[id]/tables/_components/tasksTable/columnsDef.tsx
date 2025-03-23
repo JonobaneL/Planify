@@ -1,9 +1,5 @@
 import { CellContext, ColumnDef } from '@tanstack/react-table';
-import { LuEllipsisVertical } from 'react-icons/lu';
-
-import DateCell from '../cells/DateCell';
-import StatusCell from '../cells/StatusCell';
-import TitleCell from '../cells/TitleCell';
+// import { LuEllipsisVertical } from 'react-icons/lu';
 
 import { Checkbox } from '@/components/ui/checkbox';
 import { mockPriorities } from '@/data/mock/mockPriorities';
@@ -11,11 +7,16 @@ import { statuses } from '@/data/mock/mockStatuses';
 import { StatusParams } from '@/types/status';
 import { TaskParams } from '@/types/task';
 
+import AssigneeCell from '../cells/AssigneeCell';
+import DateCell from '../cells/DateCell';
+import StatusCell from '../cells/StatusCell';
+import TitleCell from '../cells/TitleCell';
+
 export const columnsDef = [
   {
     id: 'select',
     header: ({ table }) => (
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center pl-8">
         <Checkbox
           checked={
             table.getIsAllPageRowsSelected() ||
@@ -27,7 +28,7 @@ export const columnsDef = [
       </div>
     ),
     cell: ({ row }) => (
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center pl-8">
         <Checkbox
           checked={row.getIsSelected()}
           onCheckedChange={(value) => row.toggleSelected(!!value)}
@@ -35,7 +36,7 @@ export const columnsDef = [
         />
       </div>
     ),
-    size: 42,
+    size: 72,
     enableSorting: false,
     enableHiding: false,
   },
@@ -71,21 +72,22 @@ export const columnsDef = [
     cell: (props: CellContext<TaskParams, string | null>) => (
       <DateCell {...props} />
     ),
+    size: 120,
   },
   {
     accessorKey: 'assigned_user',
     header: () => <div className="px-2">Assignee</div>,
-    cell: () => <div></div>,
-    size: 200,
+    cell: () => <AssigneeCell />,
+    size: 160,
   },
-
+  //not sure about actions dropdown
   {
     accessorKey: 'empty',
     header: (
-      <div className="flex w-full justify-end px-2">
-        <button className="cursor-pointer p-0.5">
+      <div className="flex w-full justify-end">
+        {/* <button className="cursor-pointer p-0.5">
           <LuEllipsisVertical size={16} className="text-primary" />
-        </button>
+        </button> */}
       </div>
     ),
     size: '100%',

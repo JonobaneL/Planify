@@ -6,8 +6,6 @@ import {
 } from '@tanstack/react-table';
 import { useState } from 'react';
 
-import { columnsDef } from './columnsDef';
-
 import {
   Table,
   TableBody,
@@ -17,6 +15,9 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { TaskParams } from '@/types/task';
+
+import { columnsDef } from './columnsDef';
+import TasksTableFooter from './TasksTableFooter';
 
 type TableProps = {
   tasks: TaskParams[];
@@ -42,7 +43,7 @@ const TasksTable: React.FC<TableProps> = ({ tasks }) => {
             {headerGroup.headers.map((header) => (
               <TableHead
                 key={header.id}
-                className="h-10 w-fit min-w-0 whitespace-nowrap p-0"
+                className="h-11 w-fit min-w-0 whitespace-nowrap p-0"
                 style={{ width: header.column.columnDef.size }}
               >
                 {flexRender(
@@ -58,14 +59,14 @@ const TasksTable: React.FC<TableProps> = ({ tasks }) => {
         {rows.map((row) => (
           <TableRow
             key={row.id}
-            className="data-[state=selected]:bg-primary-5 divide-x"
+            className="group divide-x data-[state=selected]:bg-primary-5"
             data-state={row.getIsSelected() && 'selected'}
           >
             {row.getVisibleCells().map((cell) => (
               <TableCell
                 key={cell.id}
                 className="h-11 w-fit min-w-0 whitespace-nowrap p-0"
-                style={{ width: cell.column.columnDef.size }}
+                style={{ minWidth: cell.column.columnDef.size }}
               >
                 {flexRender(cell.column.columnDef.cell, cell.getContext())}
               </TableCell>
@@ -73,6 +74,7 @@ const TasksTable: React.FC<TableProps> = ({ tasks }) => {
           </TableRow>
         ))}
       </TableBody>
+      <TasksTableFooter colSpan={headers[0].headers.length} />
     </Table>
   );
 };
