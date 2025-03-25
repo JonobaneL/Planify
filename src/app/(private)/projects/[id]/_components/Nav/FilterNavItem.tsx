@@ -1,17 +1,17 @@
 import { LuFilter } from 'react-icons/lu';
 
+import AssigneeFilter from '../filters/AssigneeFilter';
+import EstimationFilter from '../filters/EstimationFilter';
+import PriorityFilter from '../filters/PriorityFilter';
+import StatusFilter from '../filters/StatusFilter';
+import TypeFilter from '../filters/TypeFilter';
+
 import { Button } from '@/components/ui/button';
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
-
-import AssigneeFilter from '../Filters/AssigneeFilter';
-import EstimationFilter from '../Filters/EstimationFilter';
-import PriorityFilter from '../Filters/PriorityFilter';
-import StatusFilter from '../Filters/StatusFilter';
-import TypeFilter from '../Filters/TypeFilter';
 
 const FilterNavItem = () => {
   return (

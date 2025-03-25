@@ -1,7 +1,4 @@
-'use client';
-import { CellContext } from '@tanstack/react-table';
 import { useState } from 'react';
-import { LuCalendarPlus } from 'react-icons/lu';
 
 import ClearButton from '@/components/ClearButton';
 import { Calendar } from '@/components/ui/calendar';
@@ -10,30 +7,26 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
-import { TaskParams } from '@/types/task';
 import { formatDate } from '@/utils/dataFormatting';
 
-const DateCell: React.FC<CellContext<TaskParams, string | null>> = ({
-  getValue,
-}) => {
-  const initialDate = getValue();
-  //temporary state
+type SelectProps = {
+  value: string | null;
+};
+
+const DateSelect: React.FC<SelectProps> = ({ value }) => {
   const [date, setDate] = useState<Date | undefined>(() => {
-    if (!initialDate) return undefined;
+    if (!value) return undefined;
     return new Date();
   });
-
   return (
     <Popover modal>
       <PopoverTrigger asChild>
         {!date ? (
-          <div className="h-full p-1">
-            <button className="flex h-full w-full items-center justify-center rounded-sm opacity-0 transition-all duration-150 hover:border hover:opacity-100">
-              <LuCalendarPlus className="text-primary" size={16} />
-            </button>
-          </div>
+          <button className="flex w-fit cursor-pointer items-center rounded p-2 text-gray-600 hover:bg-primary-10">
+            No due date
+          </button>
         ) : (
-          <div className="group flex h-full items-center justify-between p-2">
+          <div className="group flex h-9 w-fit cursor-pointer items-center gap-2 rounded p-2 hover:bg-primary-10">
             <p>{formatDate(date)}</p>
             <ClearButton handler={() => setDate(undefined)} />
           </div>
@@ -51,4 +44,4 @@ const DateCell: React.FC<CellContext<TaskParams, string | null>> = ({
   );
 };
 
-export default DateCell;
+export default DateSelect;

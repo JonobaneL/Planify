@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { LuUserPlus } from 'react-icons/lu';
 
-import ClearButton from './clearButton';
-
+import ClearButton from '@/components/ClearButton';
 import {
   Command,
   CommandEmpty,

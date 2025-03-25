@@ -1,5 +1,5 @@
 import Header from '@/components/Header';
-import Sidebar from '@/components/Sidebar/Sidebar';
+import Sidebar from '@/components/Sidebar';
 import SidebarProvider from '@/context/SidebarProvider';
 
 export default function PrivateLayout({

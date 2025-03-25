@@ -9,7 +9,7 @@ import {
   LuUserRoundPlus,
 } from 'react-icons/lu';
 
-import InviteUser from '@/app/(private)/_components/InviteUser';
+import InviteUser from '@/components/InviteUser';
 
 import { Button } from './ui/button';
 

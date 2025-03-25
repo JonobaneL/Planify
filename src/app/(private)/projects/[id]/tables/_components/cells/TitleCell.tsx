@@ -7,9 +7,13 @@ import { LuMaximize2 } from 'react-icons/lu';
 import { Input } from '@/components/ui/input';
 import { TaskParams } from '@/types/task';
 
-const TitleCell: React.FC<CellContext<TaskParams, string>> = ({ getValue }) => {
-  const initialTitle = getValue();
+import TaskOverview from '../../../_components/TaskOverview';
 
+const TitleCell: React.FC<CellContext<TaskParams, string>> = ({
+  getValue,
+  row,
+}) => {
+  const initialTitle = getValue();
   //temporary state
   const [title, setTitle] = useState<string>(initialTitle);
   const [edit, setEdit] = useState(false);
@@ -33,12 +37,14 @@ const TitleCell: React.FC<CellContext<TaskParams, string>> = ({ getValue }) => {
           >
             {title}
           </p>
-          <button className="cursor-pointer">
-            <LuMaximize2
-              className="invisible text-primary group-hover:visible"
-              size={16}
-            />
-          </button>
+          <TaskOverview task={row.original}>
+            <button className="cursor-pointer">
+              <LuMaximize2
+                className="invisible text-primary group-hover:visible"
+                size={16}
+              />
+            </button>
+          </TaskOverview>
         </>
       )}
     </div>

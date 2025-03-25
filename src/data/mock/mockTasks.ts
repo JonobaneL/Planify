@@ -2,7 +2,7 @@ import { TaskParams } from '@/types/task';
 
 export const mockTasks = [
   {
-    id: 'task1',
+    id: 'tk-1',
     title: 'Design the homepage',
     description: 'This is the first task',
     projectId: 'project1',
@@ -25,7 +25,7 @@ export const mockTasks = [
     comments: null,
   },
   {
-    id: 'task2',
+    id: 'tk-2',
     title: 'Implement login functionality',
     description: 'This is the second task',
     projectId: 'project1',
@@ -48,7 +48,7 @@ export const mockTasks = [
     comments: null,
   },
   {
-    id: 'task3',
+    id: 'tk-3',
     title: 'Set up database schema',
     description: 'This is the third task',
     projectId: 'project2',
@@ -71,7 +71,7 @@ export const mockTasks = [
     comments: null,
   },
   {
-    id: 'task4',
+    id: 'tk-4',
     title: 'Create user profile page',
     description: 'This is the fourth task',
     projectId: 'project2',
@@ -94,7 +94,7 @@ export const mockTasks = [
     comments: null,
   },
   {
-    id: 'task5',
+    id: 'tk-5',
     title: 'Develop API endpoints',
     description: 'This is the fifth task',
     projectId: 'project1',
@@ -117,7 +117,7 @@ export const mockTasks = [
     comments: null,
   },
   {
-    id: 'task6',
+    id: 'tk-6',
     title: 'Write unit tests',
     description: 'This is the sixth task',
     projectId: 'project1',
@@ -140,7 +140,7 @@ export const mockTasks = [
     comments: null,
   },
   {
-    id: 'task7',
+    id: 'tk-7',
     title: 'Conduct code review',
     description: 'This is the seventh task',
     projectId: 'project4',

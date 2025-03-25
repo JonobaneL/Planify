@@ -1,9 +1,9 @@
 import { LuSearch } from 'react-icons/lu';
 
-import { Button } from '@/components/ui/button';
-
 import EditNavItem from './EditNavItem';
 import FilterNavItem from './FilterNavItem';
+
+import { Button } from '@/components/ui/button';
 
 const BoardNav = () => {
   return (

@@ -8,11 +8,11 @@ import {
   LuStar,
 } from 'react-icons/lu';
 
-import { useSidebarContext } from '@/context/SidebarProvider';
-import { cn } from '@/lib/utils';
-
 import NavItem from './NavLink';
 import ProjectsNav from './ProjectsNav';
+
+import { useSidebarContext } from '@/context/SidebarProvider';
+import { cn } from '@/lib/utils';
 
 const Sidebar = () => {
   const { isOpen, toggleSidebar } = useSidebarContext();

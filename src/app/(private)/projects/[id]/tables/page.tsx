@@ -1,4 +1,4 @@
-import BoardNav from '../_components/Nav/BoardNav';
+import BoardNav from '../_components/nav/BoardNav';
 
 import TablesList from './_components/TablesList';
 
