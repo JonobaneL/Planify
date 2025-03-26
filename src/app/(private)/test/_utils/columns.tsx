@@ -3,8 +3,8 @@ import { CellContext, ColumnDef } from '@tanstack/react-table';
 import StatusCell from '../../projects/[id]/tables/_components/cells/StatusCell';
 
 import { Checkbox } from '@/components/ui/checkbox';
-import { mockPriorities } from '@/data/mock/mockPriorities';
-import { statuses } from '@/data/mock/mockStatuses';
+import { mockPriorities } from '@/data/mock/priorities';
+import { statuses } from '@/data/mock/statuses';
 import { StatusParams } from '@/types/status';
 import { TaskParams } from '@/types/task';
 

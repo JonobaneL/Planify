@@ -59,7 +59,7 @@ const TasksTable: React.FC<TableProps> = ({ tasks }) => {
         {rows.map((row) => (
           <TableRow
             key={row.id}
-            className="group divide-x data-[state=selected]:bg-primary-5"
+            className="divide-x data-[state=selected]:bg-primary-5"
             data-state={row.getIsSelected() && 'selected'}
           >
             {row.getVisibleCells().map((cell) => (

@@ -1,9 +1,11 @@
+import { mockPriorities } from '@/data/mock/priorities';
+import { statuses } from '@/data/mock/statuses';
+import { TaskParams } from '@/types/task';
+
+import AssigneeSelect from './AssigneeSelect';
 import DateSelect from './DateSelect';
 import StatusSelect from './StatusSelect';
-
-import { mockPriorities } from '@/data/mock/mockPriorities';
-import { statuses } from '@/data/mock/mockStatuses';
-import { TaskParams } from '@/types/task';
+// import TeamSelect from './TeamSelect';
 
 type DetailsProps = {
   task: TaskParams;
@@ -28,20 +30,17 @@ const TaskDetails: React.FC<DetailsProps> = ({ task }) => {
         </li>
         <li className="grid grid-cols-[10rem_1fr] items-center gap-8 text-sm">
           <p className="font-medium text-gray-500">Assignee</p>
-          <div className="flex w-fit cursor-pointer items-center rounded p-2 text-gray-600 hover:bg-primary-10">
-            Unassigned
-          </div>
+
+          <AssigneeSelect />
         </li>
         <li className="grid grid-cols-[10rem_1fr] items-center gap-8 text-sm">
           <p className="font-medium text-gray-500">Due date</p>
           <DateSelect value={task.due_date} />
         </li>
-        <li className="grid grid-cols-[10rem_1fr] items-center gap-8 text-sm">
+        {/* <li className="grid grid-cols-[10rem_1fr] items-center gap-8 text-sm">
           <p className="font-medium text-gray-500">Team</p>
-          <div className="flex w-fit cursor-pointer items-center rounded p-2 text-gray-600 hover:bg-primary-10">
-            No team
-          </div>
-        </li>
+          <TeamSelect />
+        </li> */}
       </ul>
     </div>
   );

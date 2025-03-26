@@ -9,7 +9,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
-import { usersMock } from '@/data/mock/mockUsers';
+import { usersMock } from '@/data/mock/users';
 import { User } from '@/types/user';
 
 const AssigneeFilter = () => {

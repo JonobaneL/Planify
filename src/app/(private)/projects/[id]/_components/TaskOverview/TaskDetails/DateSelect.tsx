@@ -22,13 +22,13 @@ const DateSelect: React.FC<SelectProps> = ({ value }) => {
     <Popover modal>
       <PopoverTrigger asChild>
         {!date ? (
-          <button className="flex w-fit cursor-pointer items-center rounded p-2 text-gray-600 hover:bg-primary-10">
+          <button className="flex h-10 w-fit cursor-pointer items-center rounded p-2 text-gray-600 hover:bg-primary-10">
             No due date
           </button>
         ) : (
-          <div className="group flex h-9 w-fit cursor-pointer items-center gap-2 rounded p-2 hover:bg-primary-10">
+          <div className="group flex h-10 w-fit cursor-pointer items-center gap-2 rounded p-2 hover:bg-primary-10">
             <p>{formatDate(date)}</p>
-            <ClearButton handler={() => setDate(undefined)} />
+            <ClearButton className="p-0" handler={() => setDate(undefined)} />
           </div>
         )}
       </PopoverTrigger>

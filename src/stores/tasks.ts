@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-import { mockTasks } from '@/data/mock/mockTasks';
+import { mockTasks } from '@/data/mock/tasks';
 import { TaskParams } from '@/types/task';
 
 type StoreParams = {
