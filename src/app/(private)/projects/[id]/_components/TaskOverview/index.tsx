@@ -6,7 +6,7 @@ import {
   SheetContent,
   SheetDescription,
   SheetHeader,
-  SheetTitle,
+  // SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet';
 import { TaskParams } from '@/types/task';
@@ -14,6 +14,7 @@ import { TaskParams } from '@/types/task';
 import { TABS, TabType } from './constants';
 import Header from './Header';
 import RenderTab from './RenderTab';
+import TaskTitle from './TaskDetails/TaskTitle';
 
 type OverviewProps = {
   task: TaskParams;
@@ -27,16 +28,14 @@ const TaskOverview: React.FC<PropsWithChildren<OverviewProps>> = ({
   return (
     <Sheet>
       <SheetTrigger asChild>{children}</SheetTrigger>
-      <SheetContent className="flex max-w-[700px] flex-col gap-0 px-0 sm:max-w-[700px]">
+      <SheetContent className="flex max-w-[700px] flex-col gap-0 px-0 pb-0 sm:max-w-[700px]">
         <SheetHeader className="flex flex-col gap-5 space-y-0 px-6 pb-4">
           <Header task={task} />
-          <SheetTitle className="mt-2 rounded border border-transparent p-0.5 text-xl font-medium hover:border-gray-300">
-            {task.title}
-          </SheetTitle>
+          <TaskTitle title={task.title} />
           <SheetDescription className="sr-only" />
         </SheetHeader>
         <Tabs tab={currentTab} onTabChange={setTab} tabs={TABS} />
-        <div className="flex-1 overflow-auto">
+        <div className="flex flex-1 flex-col overflow-auto">
           <RenderTab tab={currentTab} task={task} />
         </div>
       </SheetContent>

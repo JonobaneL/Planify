@@ -14,10 +14,10 @@ const RenderTab: React.FC<RenderProps> = ({ tab, task }) => {
   switch (tab) {
     case TABS[0]:
       return (
-        <div>
+        <>
           <TaskDetails task={task} />
           <TaskDescription />
-        </div>
+        </>
       );
     case TABS[1]:
       return <Attachments />;

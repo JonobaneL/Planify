@@ -13,6 +13,15 @@
   :root {
     --radius: 0.5rem;
   }
+  h1 {
+    @apply text-3xl font-bold;
+  }
+  h2 {
+    @apply text-2xl font-bold;
+  }
+  h3 {
+    @apply text-xl font-bold;
+  }
 }
 
 html,
@@ -20,4 +29,12 @@ body {
   font-family: var(--font-figtree);
   overscroll-behavior: none; /* Prevents the rubber band effect*/
   -webkit-overflow-scrolling: touch;
+}
+.ProseMirror [data-placeholder]::before {
+  content: attr(data-placeholder);
+  color: #9ca3af;
+  pointer-events: none;
+  position: absolute;
+  font-size: 14px;
+  opacity: 0.8;
 }
