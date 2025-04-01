@@ -43,7 +43,7 @@ const LinkControl: React.FC<ControlProps> = ({ editor }) => {
           <LuLink2 />
         </Toggle>
       </PopoverTrigger>
-      <PopoverContent className="max-w-[240px] space-y-1" align="end">
+      <PopoverContent className="flex max-w-[320px] gap-1 p-1" align="end">
         <Input ref={inputRef} type="url" className="h-9 px-2 py-1" />
         <Button size="sm" className="ml-auto mr-0 block" onClick={handleSave}>
           Save

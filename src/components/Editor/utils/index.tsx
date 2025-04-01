@@ -1,9 +1,12 @@
 import { Editor } from '@tiptap/react';
 import {
   LuBold,
+  LuCodeXml,
   LuItalic,
   LuList,
+  LuListChecks,
   LuListOrdered,
+  LuTable,
   LuUnderline,
 } from 'react-icons/lu';
 
@@ -44,6 +47,31 @@ export const getControls = (editor: Editor | null) => {
       tooltip: 'Numbered List',
       onClick: () => editor.chain().focus().toggleOrderedList().run(),
       pressed: editor.isActive('orderedList'),
+    },
+  ];
+};
+
+export const getAdditionalControls = (editor: Editor | null) => {
+  if (!editor) return [];
+  return [
+    {
+      icon: <LuListChecks size={16} />,
+      title: 'Checklist',
+      active: false,
+      onClick: () => {},
+    },
+    {
+      icon: <LuTable size={16} />,
+      title: 'Table',
+      active: false,
+      onClick: () => {},
+    },
+    {
+      icon: <LuCodeXml size={16} />,
+      title: 'Code block',
+      onClick: () => editor.commands.toggleCodeBlock(),
+      active: editor.isActive('codeBlock'),
+      // onClick: () => editor.chain().focus().toggleCodeBlock().run(),
     },
   ];
 };

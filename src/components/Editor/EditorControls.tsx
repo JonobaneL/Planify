@@ -31,7 +31,7 @@ const EditorControls: React.FC<ControlsProps> = ({ editor }) => {
       ))}
 
       <LinkControl editor={editor} />
-      <AdditionalControls />
+      <AdditionalControls editor={editor} />
     </div>
   );
 };

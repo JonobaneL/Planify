@@ -11,6 +11,7 @@ type SelectProps = {
 
 const HighlightSelect: React.FC<SelectProps> = ({ editor }) => {
   if (!editor) return null;
+
   return (
     <Popover>
       <PopoverTrigger asChild>

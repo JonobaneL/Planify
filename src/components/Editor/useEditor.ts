@@ -1,3 +1,4 @@
+import CodeBlock from '@tiptap/extension-code-block';
 import Highlight from '@tiptap/extension-highlight';
 import Link from '@tiptap/extension-link';
 import Placeholder from '@tiptap/extension-placeholder';
@@ -37,9 +38,16 @@ export const useEditor = (
         heading: {
           levels: [1, 2, 3],
         },
+        paragraph: {
+          HTMLAttributes: {
+            class: 'min-h-[1rem]',
+          },
+        },
       }),
       Placeholder.configure({
-        placeholder: placeholder,
+        placeholder({ editor }) {
+          return !editor.isEmpty ? '' : (placeholder ?? '');
+        },
       }),
       Underline,
       Link.configure({
@@ -91,12 +99,18 @@ export const useEditor = (
       Highlight.configure({
         multicolor: true,
       }),
+      CodeBlock.configure({
+        HTMLAttributes: {
+          class:
+            'bg-neutral-100 dark:bg-neutral-800 p-2 text-[12.5px] rounded-md',
+        },
+      }),
     ],
     content: value,
     onUpdate: ({ editor }) => {
-      setValue(editor.getHTML());
+      setValue(editor.isEmpty ? '' : editor.getHTML());
     },
-    immediatelyRender: true,
+    immediatelyRender: false,
     autofocus: autoFocus,
     editorProps: {
       attributes: {
