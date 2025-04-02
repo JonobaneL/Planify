@@ -25,6 +25,8 @@
     "@tiptap/extension-highlight": "^2.11.7",
     "@tiptap/extension-link": "^2.11.7",
     "@tiptap/extension-placeholder": "^2.11.6",
+    "@tiptap/extension-task-item": "^2.11.7",
+    "@tiptap/extension-task-list": "^2.11.7",
     "@tiptap/extension-underline": "^2.11.6",
     "@tiptap/pm": "^2.11.5",
     "@tiptap/react": "^2.11.5",

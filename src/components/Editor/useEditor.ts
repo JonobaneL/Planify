@@ -2,11 +2,14 @@ import CodeBlock from '@tiptap/extension-code-block';
 import Highlight from '@tiptap/extension-highlight';
 import Link from '@tiptap/extension-link';
 import Placeholder from '@tiptap/extension-placeholder';
+import TaskList from '@tiptap/extension-task-list';
 import Underline from '@tiptap/extension-underline';
 import { UseEditorOptions, useEditor as useTipTap } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 
 import { cn } from '@/lib/utils';
+
+import { CustomTaskItem } from './utils/taskItem';
 
 type EditorProps = {
   autoFocus?: boolean;
@@ -103,6 +106,12 @@ export const useEditor = (
         HTMLAttributes: {
           class:
             'bg-neutral-100 dark:bg-neutral-800 p-2 text-[12.5px] rounded-md',
+        },
+      }),
+      CustomTaskItem,
+      TaskList.configure({
+        HTMLAttributes: {
+          class: 'flex flex-col gap-1 mb-0.5',
         },
       }),
     ],

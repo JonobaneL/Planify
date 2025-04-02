@@ -1,0 +1,17 @@
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.task-label {
+  display: flex;
+  align-items: center;
+}
+.checkbox {
+  width: 1rem;
+  height: 1rem;
+  accent-color: #255eda;
+}
+.task-content {
+  flex: 1;
+}

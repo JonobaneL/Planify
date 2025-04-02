@@ -57,8 +57,8 @@ export const getAdditionalControls = (editor: Editor | null) => {
     {
       icon: <LuListChecks size={16} />,
       title: 'Checklist',
-      active: false,
-      onClick: () => {},
+      active: editor.isActive('taskList'),
+      onClick: () => editor.commands.toggleTaskList(),
     },
     {
       icon: <LuTable size={16} />,
@@ -71,7 +71,6 @@ export const getAdditionalControls = (editor: Editor | null) => {
       title: 'Code block',
       onClick: () => editor.commands.toggleCodeBlock(),
       active: editor.isActive('codeBlock'),
-      // onClick: () => editor.chain().focus().toggleCodeBlock().run(),
     },
   ];
 };
