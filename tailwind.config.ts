@@ -10,6 +10,14 @@ export default {
   ],
   theme: {
     extend: {
+      screens: {
+        laptop: '1440px',
+      },
+      backgroundImage: {
+        profile: "url('/assets/profile_back1.svg')",
+        profile2: "url('/assets/profile_back2.svg')",
+        profile3: "url('/assets/profile_back3.svg')",
+      },
       colors: {
         background: 'var(--background)',
         foreground: 'var(--foreground)',

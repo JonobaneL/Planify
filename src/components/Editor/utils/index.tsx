@@ -64,7 +64,7 @@ export const getAdditionalControls = (editor: Editor | null) => {
       icon: <LuTable size={16} />,
       title: 'Table',
       active: false,
-      onClick: () => {},
+      onClick: () => editor.commands.insertTable(),
     },
     {
       icon: <LuCodeXml size={16} />,

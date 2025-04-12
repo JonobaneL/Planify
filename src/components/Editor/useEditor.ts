@@ -2,6 +2,10 @@ import CodeBlock from '@tiptap/extension-code-block';
 import Highlight from '@tiptap/extension-highlight';
 import Link from '@tiptap/extension-link';
 import Placeholder from '@tiptap/extension-placeholder';
+import Table from '@tiptap/extension-table';
+import TableCell from '@tiptap/extension-table-cell';
+import TableHeader from '@tiptap/extension-table-header';
+import TableRow from '@tiptap/extension-table-row';
 import TaskList from '@tiptap/extension-task-list';
 import Underline from '@tiptap/extension-underline';
 import { UseEditorOptions, useEditor as useTipTap } from '@tiptap/react';
@@ -112,6 +116,16 @@ export const useEditor = (
       TaskList.configure({
         HTMLAttributes: {
           class: 'flex flex-col gap-1 mb-0.5',
+        },
+      }),
+      Table.configure({
+        resizable: true,
+      }),
+      TableRow,
+      TableHeader,
+      TableCell.configure({
+        HTMLAttributes: {
+          class: 'p-1 border',
         },
       }),
     ],

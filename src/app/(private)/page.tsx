@@ -1,109 +1,62 @@
+import { mockProjects } from '@/data/mock/projects';
+
+import ProjectCard from './_components/projectCard';
+
 export default function Home() {
-  const mockData = [
-    {
-      id: 'board1',
-      short: 'B1',
-      name: 'Board 1',
-      projectName: 'Project 1',
-      taskAmout: 10,
-      groupAmount: 2,
-    },
-    {
-      id: 'board2',
-      short: 'B2',
-      name: 'Board 2',
-      projectName: 'Project 2',
-      taskAmout: 10,
-      groupAmount: 2,
-    },
-    {
-      id: 'board3',
-      short: 'B3',
-      name: 'Board 3',
-      projectName: 'Project 3',
-      taskAmout: 10,
-      groupAmount: 2,
-    },
-    {
-      id: 'board4',
-      short: 'B4',
-      name: 'Board 4',
-      projectName: 'Project 4',
-      taskAmout: 12,
-      groupAmount: 3,
-    },
-    {
-      id: 'board5',
-      short: 'B5',
-      name: 'Board 5',
-      projectName: 'Project 5',
-      taskAmout: 12,
-      groupAmount: 3,
-    },
-    {
-      id: 'board6',
-      short: 'B6',
-      name: 'Board 6',
-      projectName: 'Project 6',
-      taskAmout: 10,
-      groupAmount: 2,
-    },
-    {
-      id: 'board7',
-      short: 'B7',
-      name: 'Board 7',
-      projectName: 'Project 7',
-      taskAmout: 12,
-      groupAmount: 3,
-    },
-    {
-      id: 'board8',
-      short: 'B8',
-      name: 'Board 8',
-      projectName: 'Project 8',
-      taskAmout: 12,
-      groupAmount: 3,
-    },
-    {
-      id: 'board9',
-      short: 'B9',
-      name: 'Board 9',
-      projectName: 'Project 9',
-      taskAmout: 12,
-      groupAmount: 3,
-    },
-  ];
   return (
-    <main className="">
-      <h2 className="mb-8">
-        Hello there! Welcome to Planify, your all-in-one platform for project
-        management and team collaboration. Stay organized, stay productive, and
-        let&apos;s get to work!
-      </h2>
-      <div className="flex flex-wrap gap-4">
-        {mockData.map((board) => (
-          <div
-            key={board.id}
-            className="bg-primary-10 flex w-fit min-w-60 gap-6 rounded p-4"
-          >
-            <div>
-              <div className="flex items-center gap-2">
-                <div className="bg-primary-80 flex size-10 items-center justify-center rounded font-medium text-white">
-                  {board.short}
-                </div>
-                <div>
-                  <p className="font-medium">{board.name}</p>
-                  <p className="text-sm">{board.projectName}</p>
-                </div>
-              </div>
-              <div className="mt-2 flex gap-2 text-sm text-gray-600">
-                <p>Groups: {board.groupAmount}</p>
-                <p>Tasks: {board.taskAmout}</p>
-              </div>
+    <main className="grid h-full grid-cols-[1fr_360px] grid-rows-[auto_1fr] gap-4">
+      <header className="col-span-2 mx-8">
+        <h1 className="font-poppins text-2xl font-bold text-gray-800">
+          Welcome to Planify
+        </h1>
+        <p className="font-medium text-gray-600">
+          Your all-in-one platform for project management and team
+          collaboration.
+        </p>
+      </header>
+      <section className="h-full w-full space-y-4 pl-8">
+        <div className="grid h-full w-full auto-rows-min grid-cols-3 gap-4 rounded-t-2xl bg-[hsl(220,60%,97%)] p-4">
+          {mockProjects.map((project) => (
+            <ProjectCard key={project.id} project={project} />
+          ))}
+        </div>
+      </section>
+      <section className="space-y-4 pr-8">
+        <div className="flex cursor-pointer justify-between rounded-2xl border border-gray-100 p-4 transition-shadow hover:shadow">
+          <div>
+            <p className="text-lg text-gray-800">Hello,</p>
+            <h2 className="text-primary">Alex</h2>
+          </div>
+          <div className="bg-profile flex size-14 items-center justify-center rounded-full bg-auto">
+            <p className="font-poppins text-2xl font-semibold text-white">A</p>
+          </div>
+        </div>
+        <div className="space-y-2 rounded-2xl border border-gray-100 py-2 pt-4 transition-shadow hover:shadow">
+          <div className="flex items-center justify-between px-4">
+            <h4 className="font-semibold text-primary">Schedule</h4>
+            <p className="text-sm text-gray-600">10 April</p>
+          </div>
+          {/* <div>
+            <p className="text-sm text-gray-600">
+              You don&apos;t have any events today
+            </p>
+          </div> */}
+          <div>
+            <div className="mx-2 cursor-pointer space-y-1 rounded-xl p-2 transition-colors hover:bg-[hsl(220,60%,97%)]">
+              <p className="font-medium text-gray-800">Daily meeting</p>
+              <p className="text-sm font-medium text-gray-500">
+                11:00am - 11:30am
+              </p>
+            </div>
+            <div className="mx-2 cursor-pointer space-y-1 rounded-xl p-2 transition-colors hover:bg-[hsl(220,60%,97%)]">
+              <p className="font-medium text-gray-800">Quarterly report</p>
+              <p className="text-sm font-medium text-gray-500">
+                14:00pm - 15:30pm
+              </p>
             </div>
           </div>
-        ))}
-      </div>
+        </div>
+      </section>
     </main>
   );
 }
