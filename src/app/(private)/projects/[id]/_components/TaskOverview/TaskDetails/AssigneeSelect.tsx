@@ -16,7 +16,7 @@ const AssigneeSelect: React.FC = () => {
       placeholder="Search assignee..."
       emptyMessage="No assignee found."
     >
-      <div className="group flex h-10 w-fit cursor-pointer items-center gap-2 rounded p-2 hover:bg-primary-10">
+      <div className="group flex h-10 w-fit cursor-pointer items-center gap-2 rounded-lg p-2 hover:bg-primary-10">
         {value === null ? (
           <p className="text-gray-600">Unassigned</p>
         ) : (

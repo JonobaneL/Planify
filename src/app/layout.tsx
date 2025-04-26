@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Figtree, Poppins } from 'next/font/google';
+import { NuqsAdapter } from 'nuqs/adapters/next/app';
 import './globals.css';
 
 const figtree = Figtree({
@@ -28,7 +29,9 @@ export default function RootLayout({
       <body
         className={`${figtree.variable} ${poppins.variable} flex h-full min-h-dvh flex-col font-figtree antialiased`}
       >
-        <div className="flex flex-1 flex-col">{children}</div>
+        <NuqsAdapter>
+          <div className="flex flex-1 flex-col">{children}</div>
+        </NuqsAdapter>
       </body>
     </html>
   );

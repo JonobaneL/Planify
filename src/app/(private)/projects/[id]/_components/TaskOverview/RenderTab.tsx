@@ -1,16 +1,17 @@
 import { TaskParams } from '@/types/task';
 
-import Attachments from './Attachments';
+import Attachments from './attachments';
 import { TABS, TabType } from './constants';
 import TaskDescription from './TaskDescription';
-import TaskDetails from './TaskDetails';
+import TaskDetails from './taskDetails';
 
 type RenderProps = {
-  tab: TabType;
+  tab: TabType | null;
   task: TaskParams;
 };
 
 const RenderTab: React.FC<RenderProps> = ({ tab, task }) => {
+  if (!tab) return null;
   switch (tab) {
     case TABS[0]:
       return (
