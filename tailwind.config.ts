@@ -26,7 +26,7 @@ export default {
         'primary-80': '#255eda',
         'primary-50': '#7c9fe9',
         'primary-10': '#edf3f8',
-        'primary-5': '#e9f0fb',
+        'primary-5': '#f3f6fc',
         'p-background': '#f9f8fa',
       },
       borderRadius: {
