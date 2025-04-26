@@ -1,4 +1,4 @@
-import BoardNav from '../_components/nav/BoardNav';
+import BoardNav from '../_components/nav';
 
 const KanbanPage = () => {
   return (

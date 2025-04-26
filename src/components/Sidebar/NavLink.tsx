@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -15,12 +17,12 @@ type NavLinkProps = {
   icon: React.ReactNode;
   title: string;
   link: string;
-  activeState?: boolean;
+  exact?: boolean;
 };
-const NavLink = ({ icon, title, link, activeState = false }: NavLinkProps) => {
+const NavLink = ({ icon, title, link, exact = false }: NavLinkProps) => {
   const { isOpen } = useSidebarContext();
   const path = usePathname();
-  const isActive = path.includes(link);
+  const isActive = exact ? path === link : path.startsWith(link);
   const getStyles = () => {
     if (isOpen) {
       return 'gap-2 px-3 py-1';
@@ -37,7 +39,7 @@ const NavLink = ({ icon, title, link, activeState = false }: NavLinkProps) => {
               className={cn(
                 `group flex h-9 items-center rounded text-white transition-colors duration-75 hover:bg-white/10 hover:text-white`,
                 styles,
-                isActive && activeState ? 'text-white' : 'text-white/70',
+                isActive ? 'text-white' : 'text-white/70',
               )}
             >
               {icon}
@@ -45,7 +47,7 @@ const NavLink = ({ icon, title, link, activeState = false }: NavLinkProps) => {
                 <p
                   className={cn(
                     'text-white/70 transition-colors duration-75 group-hover:text-white',
-                    isActive && activeState ? 'text-white' : 'text-white/70',
+                    isActive ? 'text-white' : 'text-white/70',
                   )}
                 >
                   {title}
@@ -54,7 +56,11 @@ const NavLink = ({ icon, title, link, activeState = false }: NavLinkProps) => {
             </div>
           </TooltipTrigger>
           {!isOpen && (
-            <TooltipContent side="right" className="rounded bg-primary shadow">
+            <TooltipContent
+              side="right"
+              sideOffset={20}
+              className="rounded bg-primary shadow"
+            >
               <p className="font-geist">{title}</p>
             </TooltipContent>
           )}

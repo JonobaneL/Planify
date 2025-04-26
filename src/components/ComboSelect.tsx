@@ -64,7 +64,7 @@ const ComboSelect = <T extends OptionType>({
                     key={option.id}
                     value={optionValue}
                     onSelect={handleSelect}
-                    className="flex items-center gap-2"
+                    className="flex items-center gap-2 data-[selected=true]:bg-primary-5"
                   >
                     {option.avatar && (
                       <Image

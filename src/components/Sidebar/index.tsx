@@ -8,11 +8,11 @@ import {
   LuStar,
 } from 'react-icons/lu';
 
-import NavItem from './NavLink';
-import ProjectsNav from './ProjectsNav';
-
 import { useSidebarContext } from '@/context/SidebarProvider';
 import { cn } from '@/lib/utils';
+
+import NavItem from './NavLink';
+import ProjectsNav from './ProjectsNav';
 
 const Sidebar = () => {
   const { isOpen, toggleSidebar } = useSidebarContext();
@@ -21,15 +21,16 @@ const Sidebar = () => {
       title: 'Home',
       link: '/',
       icon: <LuHouse />,
+      exact: true,
     },
     {
       title: 'My Work',
-      link: '/',
+      link: '/my-work',
       icon: <LuCalendarCheck />,
     },
     {
       title: 'Favorites',
-      link: '/',
+      link: '/favorites',
       icon: <LuStar />,
     },
     {

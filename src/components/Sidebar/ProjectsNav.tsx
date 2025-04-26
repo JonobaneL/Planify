@@ -1,13 +1,13 @@
 import { usePathname } from 'next/navigation';
 import {
   LuChartColumn,
-  LuPanelLeft,
   LuPlus,
   LuSquareKanban,
   LuTable2,
 } from 'react-icons/lu';
 
 import { useSidebarContext } from '@/context/SidebarProvider';
+import { mockProjects } from '@/data/mock/projects';
 
 import NavItem from './NavLink';
 
@@ -31,28 +31,7 @@ const ProjectsNav = () => {
       icon: <LuChartColumn />,
     },
   ];
-  const projectsList = [
-    {
-      id: 'project1',
-      name: 'Project 1',
-      href: '/projects/1/tables',
-    },
-    {
-      id: 'propject2',
-      name: 'Project 2',
-      href: '/projects/2/tables',
-    },
-    {
-      id: 'propject3',
-      name: 'Project 3',
-      href: '/projects/3/tables',
-    },
-    {
-      id: 'propject4',
-      name: 'Project 4',
-      href: '/projects/4/tables',
-    },
-  ];
+
   return (
     <nav
       className={`${isOpen ? 'pt-5' : 'pt-3'} relative before:absolute before:left-1/2 before:top-0 before:h-[1px] before:w-[70%] before:-translate-x-1/2 before:bg-white/70`}
@@ -71,9 +50,8 @@ const ProjectsNav = () => {
             className={`flex flex-col items-center gap-0.5 ${isOpen ? 'px-5' : 'px-3'}`}
           >
             {projectsNav.map((route, index) => (
-              <NavItem key={index} {...route} activeState={true} />
+              <NavItem key={index} {...route} />
             ))}
-            {/* <NavItem icon={<LuSettings />} title="Settings" link="settings" activeState={true} /> not we need this*/}
           </div>
         </>
       ) : (
@@ -85,12 +63,14 @@ const ProjectsNav = () => {
             </div>
           )}
           <div className={`flex flex-col gap-0.5 ${isOpen ? 'px-5' : 'px-3'}`}>
-            {projectsList.map((route) => (
+            {mockProjects.map((project) => (
               <NavItem
-                key={route.id}
-                icon={<LuPanelLeft />}
-                title={route.name}
-                link={route.href}
+                key={project.id}
+                icon={
+                  project.view === 'board' ? <LuSquareKanban /> : <LuTable2 />
+                }
+                title={project.name}
+                link={`/projects/${project.id}/tables`}
               />
             ))}
           </div>

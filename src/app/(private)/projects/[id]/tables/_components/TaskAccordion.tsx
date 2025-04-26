@@ -28,7 +28,7 @@ const TaskAccordion: React.FC<PropsWithChildren<AccordionProps>> = ({
         <div className="flex size-5 items-center justify-center rounded-full bg-primary-10 text-sm font-medium text-primary">
           {tasksLength}
         </div>
-        <p>{title}</p>
+        <h3 className="font-poppins text-base font-medium">{title}</h3>
       </AccordionTrigger>
       <AccordionContent className="p-0 pb-2">
         <div className="shadow-sm">{children}</div>

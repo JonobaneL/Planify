@@ -5,5 +5,4 @@ export const tableColumns = [
   'Assignee',
   'Estimation',
   'Due date',
-  'Team',
 ];

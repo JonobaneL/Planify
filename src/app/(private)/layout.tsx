@@ -1,4 +1,4 @@
-import Header from '@/components/Header';
+import Header from '@/app/(private)/_components/Header';
 import Sidebar from '@/components/Sidebar';
 import SidebarProvider from '@/context/SidebarProvider';
 
@@ -13,7 +13,7 @@ export default function PrivateLayout({
         <Sidebar />
         <div className="h-dvh w-full flex-1 overflow-auto">
           <Header />
-          <div className="h-[calc(100%-60px)] w-full flex-1 overflow-auto pt-6">
+          <div className="h-[calc(100%-60px)] w-full flex-1 overflow-auto">
             {children}
           </div>
         </div>
