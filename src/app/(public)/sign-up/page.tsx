@@ -1,8 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import backgroundImage from '@/assets/images/publicBackground.jpg';
-
 import SignUpForm from './_components/SignUpForm';
 
 const SignUpPage = () => {
@@ -11,8 +9,8 @@ const SignUpPage = () => {
       <div className="relative hidden h-full w-[60%] lg:block">
         <Image
           className="h-dvh w-full object-cover"
-          src={backgroundImage}
-          alt="logo"
+          src="assets/backgrounds/publicBackground.jpg"
+          alt="backgroundImage"
           priority={true}
         />
       </div>

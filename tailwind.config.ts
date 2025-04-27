@@ -14,9 +14,9 @@ export default {
         laptop: '1440px',
       },
       backgroundImage: {
-        profile: "url('/assets/profile_back1.svg')",
-        profile2: "url('/assets/profile_back2.svg')",
-        profile3: "url('/assets/profile_back3.svg')",
+        profile: "url('/assets/backgrounds/profile_back1.svg')",
+        profile2: "url('/assets/backgrounds/profile_back2.svg')",
+        profile3: "url('/assets/backgrounds/profile_back3.svg')",
       },
       colors: {
         background: 'var(--background)',

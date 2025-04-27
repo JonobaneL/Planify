@@ -1,8 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import backgroundImage from '@/assets/images/publicBackground.jpg';
-
 import LogInForm from './_components/LogInForm';
 
 const LogInPage = () => {
@@ -11,7 +9,7 @@ const LogInPage = () => {
       <div className="relative hidden h-full w-[60%] lg:block">
         <Image
           className="h-dvh w-full object-cover"
-          src={backgroundImage}
+          src="assets/backgrounds/publicBackground.jpg"
           alt="logo"
           priority={true}
         />
