@@ -9,8 +9,6 @@ import { Input } from '@/components/ui/input';
 import { useCommentsStore } from '@/stores/comments';
 import { TaskParams } from '@/types/task';
 
-import { useTaskOverviewStore } from '../taskOverview/store';
-
 const TitleCell: React.FC<CellContext<TaskParams, string>> = ({
   getValue,
   row,
@@ -19,13 +17,9 @@ const TitleCell: React.FC<CellContext<TaskParams, string>> = ({
 
   const setTaskId = useQueryState('task')[1];
   const setTab = useQueryState('tab')[1];
-  const showOverview = useTaskOverviewStore((state) => state.showOverview);
+
   const getCommentsCount = useCommentsStore((state) => state.getCommentsCount);
   const commentsCount = getCommentsCount(row.original.id);
-  const showHandler = () => {
-    setTaskId(row.original.id);
-    showOverview();
-  };
 
   //temporary state
   const [title, setTitle] = useState<string>(initialTitle);
@@ -33,7 +27,7 @@ const TitleCell: React.FC<CellContext<TaskParams, string>> = ({
   return (
     <div
       className="group flex h-full w-full items-center justify-between gap-2 p-2"
-      onClick={showHandler}
+      onClick={() => setTaskId(row.original.id)}
     >
       {edit ? (
         <Input
