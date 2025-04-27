@@ -1,5 +1,6 @@
 'use client';
-import { useState } from 'react';
+
+import { useQueryState } from 'nuqs';
 import { LuSquareKanban, LuTable2 } from 'react-icons/lu';
 
 import { Button } from '@/components/ui/button';
@@ -12,12 +13,15 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { cn } from '@/lib/utils';
 
 const LayoutSelect: React.FC = () => {
-  const [layout, setLayout] = useState('table');
+  const [view, setView] = useQueryState('view', {
+    defaultValue: 'table',
+    clearOnDefault: false,
+  });
   return (
     <Popover>
       <PopoverTrigger asChild>
         <Button variant="ghost" size="sm" className="[&_svg]:size-[18px]">
-          {layout === 'board' ? <LuSquareKanban /> : <LuTable2 />}
+          {view === 'board' ? <LuSquareKanban /> : <LuTable2 />}
           Layout
         </Button>
       </PopoverTrigger>
@@ -25,11 +29,11 @@ const LayoutSelect: React.FC = () => {
         <p className="mb-2 font-poppins text-sm font-medium text-gray-800">
           Layout
         </p>
-        <RadioGroup value={layout} onValueChange={setLayout} className="gap-0">
+        <RadioGroup value={view} onValueChange={setView} className="gap-0">
           <label
             className={cn(
               'flex h-8 cursor-pointer items-center justify-between rounded text-sm text-gray-600',
-              layout === 'table' && 'font-medium text-gray-900',
+              view === 'table' && 'font-medium text-gray-900',
             )}
           >
             <div className="flex items-center gap-2">
@@ -42,7 +46,7 @@ const LayoutSelect: React.FC = () => {
           <label
             className={cn(
               'flex h-8 cursor-pointer items-center justify-between rounded text-sm text-gray-600',
-              layout === 'board' && 'font-medium text-gray-900',
+              view === 'board' && 'font-medium text-gray-900',
             )}
           >
             <div className="flex items-center gap-2">

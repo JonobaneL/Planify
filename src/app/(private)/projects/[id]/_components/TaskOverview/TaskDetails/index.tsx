@@ -6,8 +6,6 @@ import AssigneeSelect from './AssigneeSelect';
 import DateSelect from './DateSelect';
 import StatusSelect from './StatusSelect';
 
-// import TeamSelect from './TeamSelect';
-
 type DetailsProps = {
   task: TaskParams;
 };

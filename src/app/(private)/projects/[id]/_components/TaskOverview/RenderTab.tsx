@@ -1,6 +1,7 @@
 import { TaskParams } from '@/types/task';
 
 import Attachments from './attachments';
+import TaskComments from './comments';
 import { TABS, TabType } from './constants';
 import TaskDescription from './TaskDescription';
 import TaskDetails from './taskDetails';
@@ -23,7 +24,7 @@ const RenderTab: React.FC<RenderProps> = ({ tab, task }) => {
     case TABS[1]:
       return <Attachments />;
     case TABS[2]:
-      return <div className="p-6">Comments</div>;
+      return <TaskComments />;
   }
 };
 

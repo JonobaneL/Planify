@@ -1,11 +1,10 @@
 'use client';
 
 import { Accordion } from '@/components/ui/accordion';
+import { useTasksStore } from '@/stores/tasks';
 
 import TaskAccordion from './TaskAccordion';
 import TasksTable from './tasksTable';
-
-import { useTasksStore } from '@/stores/tasks';
 
 const TablesList: React.FC = () => {
   const tasks = useTasksStore((state) => state.tasks);

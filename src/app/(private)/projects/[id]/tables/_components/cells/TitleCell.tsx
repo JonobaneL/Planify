@@ -3,9 +3,10 @@
 import { CellContext } from '@tanstack/react-table';
 import { useQueryState } from 'nuqs';
 import { useState } from 'react';
-import { LuMaximize2, LuMessageCircle } from 'react-icons/lu';
+import { LuMessageCircle } from 'react-icons/lu';
 
 import { Input } from '@/components/ui/input';
+import { useCommentsStore } from '@/stores/comments';
 import { TaskParams } from '@/types/task';
 
 import { useTaskOverviewStore } from '../../../_components/taskOverview/store';
@@ -16,11 +17,11 @@ const TitleCell: React.FC<CellContext<TaskParams, string>> = ({
 }) => {
   const initialTitle = getValue();
 
-  // const setTaskId = useParamsState('task')[1];
   const setTaskId = useQueryState('task')[1];
   const setTab = useQueryState('tab')[1];
   const showOverview = useTaskOverviewStore((state) => state.showOverview);
-
+  const getCommentsCount = useCommentsStore((state) => state.getCommentsCount);
+  const commentsCount = getCommentsCount(row.original.id);
   const showHandler = () => {
     setTaskId(row.original.id);
     showOverview();
@@ -30,7 +31,10 @@ const TitleCell: React.FC<CellContext<TaskParams, string>> = ({
   const [title, setTitle] = useState<string>(initialTitle);
   const [edit, setEdit] = useState(false);
   return (
-    <div className="group flex h-full w-full items-center justify-between gap-2 p-2">
+    <div
+      className="group flex h-full w-full items-center justify-between gap-2 p-2"
+      onClick={showHandler}
+    >
       {edit ? (
         <Input
           type="text"
@@ -44,29 +48,25 @@ const TitleCell: React.FC<CellContext<TaskParams, string>> = ({
         <>
           <p
             className="max-w-full truncate rounded-sm p-0.5 ring-gray-300 transition-all duration-100 hover:ring-1"
-            onClick={() => setEdit(true)}
+            onClick={(e) => {
+              e.stopPropagation();
+              setEdit(true);
+            }}
             title={title}
           >
             {title}
           </p>
-          <div className="flex w-0 gap-2 group-hover:w-fit">
+          {commentsCount ? (
             <button
-              className="invisible flex cursor-pointer items-center gap-0.5 text-gray-400 transition-colors hover:text-primary group-hover:visible"
+              className="flex cursor-pointer items-center gap-0.5 text-gray-400 transition-colors hover:text-primary"
               onClick={() => {
-                showHandler();
                 setTab('Comments');
               }}
             >
               <LuMessageCircle size={16} />
-              <p className="text-xs font-medium">2</p>
+              <p className="text-xs font-medium">{commentsCount}</p>
             </button>
-            <button className="cursor-pointer" onClick={showHandler}>
-              <LuMaximize2
-                className="invisible text-gray-400 transition-colors hover:text-primary group-hover:visible"
-                size={16}
-              />
-            </button>
-          </div>
+          ) : null}
         </>
       )}
     </div>

@@ -6,7 +6,7 @@ const Attachments: React.FC = () => {
       <div className="flex flex-col items-center">
         <Image
           src="/assets/empty-files.svg"
-          width={300}
+          width={240}
           height={200}
           alt="empty-files"
         />
