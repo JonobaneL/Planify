@@ -37,7 +37,7 @@ const NavLink = ({ icon, title, link, exact = false }: NavLinkProps) => {
           <TooltipTrigger asChild>
             <div
               className={cn(
-                `group flex h-9 items-center rounded text-white transition-colors duration-75 hover:bg-white/10 hover:text-white`,
+                `group flex min-h-9 items-center rounded text-white transition-colors duration-75 hover:bg-white/10 hover:text-white`,
                 styles,
                 isActive ? 'text-white' : 'text-white/70',
               )}

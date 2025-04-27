@@ -1,6 +1,6 @@
+import BoardNav from './_components/nav';
 import TablesList from './_components/TablesList';
-import BoardNav from '../_components/nav';
-import TaskOverview from '../_components/taskOverview';
+import TaskOverview from './_components/taskOverview';
 
 const TablesPage = () => {
   return (

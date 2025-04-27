@@ -10,7 +10,7 @@ type CardProps = {
 
 const ProjectCard: React.FC<CardProps> = ({ project }) => {
   return (
-    <Link href={`/projects/${project.id}/tables`}>
+    <Link href={`/projects/${project.id}`}>
       <div className="flex h-full w-full cursor-pointer flex-col justify-between rounded-3xl border border-gray-100 bg-white p-4 transition-shadow duration-200 hover:shadow">
         <div>
           <div className="flex gap-2">

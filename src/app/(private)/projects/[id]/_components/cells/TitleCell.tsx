@@ -9,7 +9,7 @@ import { Input } from '@/components/ui/input';
 import { useCommentsStore } from '@/stores/comments';
 import { TaskParams } from '@/types/task';
 
-import { useTaskOverviewStore } from '../../../_components/taskOverview/store';
+import { useTaskOverviewStore } from '../taskOverview/store';
 
 const TitleCell: React.FC<CellContext<TaskParams, string>> = ({
   getValue,
