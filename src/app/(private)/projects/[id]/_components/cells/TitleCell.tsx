@@ -39,30 +39,28 @@ const TitleCell: React.FC<CellContext<TaskParams, string>> = ({
           autoFocus
         />
       ) : (
-        <>
-          <p
-            className="max-w-full truncate rounded-sm p-0.5 ring-gray-300 transition-all duration-100 hover:ring-1"
-            onClick={(e) => {
-              e.stopPropagation();
-              setEdit(true);
-            }}
-            title={title}
-          >
-            {title}
-          </p>
-          {commentsCount ? (
-            <button
-              className="flex cursor-pointer items-center gap-0.5 text-gray-400 transition-colors hover:text-primary"
-              onClick={() => {
-                setTab('Comments');
-              }}
-            >
-              <LuMessageCircle size={16} />
-              <p className="text-xs font-medium">{commentsCount}</p>
-            </button>
-          ) : null}
-        </>
+        <p
+          className="max-w-full truncate rounded-sm p-0.5 ring-gray-300 transition-all duration-100 hover:ring-1"
+          onClick={(e) => {
+            e.stopPropagation();
+            setEdit(true);
+          }}
+          title={title}
+        >
+          {title}
+        </p>
       )}
+      {commentsCount && !edit ? (
+        <button
+          className="flex cursor-pointer items-center gap-0.5 text-gray-400 transition-colors hover:text-primary"
+          onClick={() => {
+            setTab('Comments');
+          }}
+        >
+          <LuMessageCircle size={16} />
+          <p className="text-xs font-medium">{commentsCount}</p>
+        </button>
+      ) : null}
     </div>
   );
 };

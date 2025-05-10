@@ -4,7 +4,6 @@ import {
   getCoreRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import { useState } from 'react';
 
 import {
   Table,
@@ -24,9 +23,8 @@ type TableProps = {
 };
 
 const TasksTable: React.FC<TableProps> = ({ tasks }) => {
-  const [nTasks] = useState<TaskParams[]>(tasks);
   const table = useReactTable({
-    data: nTasks,
+    data: tasks,
     columns: columnsDef,
     getCoreRowModel: getCoreRowModel(),
   });

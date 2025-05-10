@@ -16,6 +16,7 @@ const LayoutSelect: React.FC = () => {
   const [view, setView] = useQueryState('view', {
     defaultValue: 'table',
     clearOnDefault: false,
+    shallow: false,
   });
   return (
     <Popover>

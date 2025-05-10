@@ -20,6 +20,7 @@ const StatusCell: React.FC<StatusCellProps> = ({
   cleanButton = false,
 }) => {
   const initialStatus = getValue();
+
   //temporary state
   const [status, setStatus] = useState<StatusParams | null>(initialStatus);
 
@@ -36,9 +37,9 @@ const StatusCell: React.FC<StatusCellProps> = ({
           <button className="flex items-center gap-2">
             <div
               className="size-4 rounded"
-              style={{ backgroundColor: status.color }}
+              style={{ backgroundColor: status?.color }}
             />
-            <p>{status.label}</p>
+            <p>{status?.label}</p>
           </button>
           <ClearButton handler={() => setStatus(null)} visible={cleanButton} />
         </div>
