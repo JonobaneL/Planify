@@ -1,18 +1,19 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { LuCircleUser, LuLockKeyhole, LuMail } from 'react-icons/lu';
 import { z } from 'zod';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-
-import { signUpSchema } from '../utils/formSchema';
+import { useAuthStore } from '@/stores/auth';
 
 import PasswordStrength from './PasswordStrength';
+import { signUpSchema } from '../utils/formSchema';
 
-type FormParams = z.infer<typeof signUpSchema>;
+export type FormParams = z.infer<typeof signUpSchema>;
 
 const SignUpForm: React.FC = () => {
   const {
@@ -24,9 +25,18 @@ const SignUpForm: React.FC = () => {
     resolver: zodResolver(signUpSchema),
     mode: 'onChange',
   });
+  const router = useRouter();
 
-  const submitHandler = (data: FormParams) => {
-    console.log(data);
+  const signup = useAuthStore((state) => state.signup);
+  const submitHandler = async (data: FormParams) => {
+    await signup({
+      first_name: data.firstName,
+      last_name: data.lastName,
+      email: data.email,
+      username: data.username,
+      password: data.confirmPassword,
+    });
+    router.push('/');
   };
 
   const password = watch('password');

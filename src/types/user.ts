@@ -11,3 +11,11 @@ export type User = {
   role?: string; //change to role type
   type?: string; //change to role type
 };
+
+export type SignUserProps = {
+  first_name: string;
+  last_name: string;
+  email: string;
+  username: string;
+  password: string;
+};

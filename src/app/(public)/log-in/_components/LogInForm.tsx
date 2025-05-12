@@ -2,12 +2,14 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { LuLockKeyhole, LuMail } from 'react-icons/lu';
 import { z } from 'zod';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { useAuthStore } from '@/stores/auth';
 
 const logInSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
@@ -25,12 +27,18 @@ const LogInForm: React.FC = () => {
     resolver: zodResolver(logInSchema),
     mode: 'onChange',
   });
-
-  const submitHandler = (data: FormParams) => {
-    console.log(data);
+  const router = useRouter();
+  const login = useAuthStore((state) => state.login);
+  const submitHandler = async (data: FormParams) => {
+    try {
+      await login(data.email, data.password);
+      router.push('/');
+    } catch (e) {
+      console.error(e);
+    }
   };
   return (
-    <form onSubmit={handleSubmit(submitHandler)} className="space-y-3">
+    <form onSubmit={handleSubmit(submitHandler)} className="space-y-4">
       <Input
         placeholder="Email Address"
         {...register('email')}
