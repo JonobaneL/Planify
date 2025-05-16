@@ -32,7 +32,7 @@ const LogInForm: React.FC = () => {
   const submitHandler = async (data: FormParams) => {
     try {
       await login(data.email, data.password);
-      router.push('/');
+      router.push('/dashboard');
     } catch (e) {
       console.error(e);
     }

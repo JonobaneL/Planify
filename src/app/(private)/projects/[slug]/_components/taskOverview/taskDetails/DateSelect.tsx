@@ -7,7 +7,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
-import { formatDate } from '@/utils/dataFormatting';
+import { formatDate } from '@/utils/dateFormatting';
 
 type SelectProps = {
   value: string | null;

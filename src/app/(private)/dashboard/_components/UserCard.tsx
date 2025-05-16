@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useAuthStore } from '@/stores/auth';
 
 const UserCard: React.FC = () => {
-  const { username, logout } = useAuthStore();
+  const { first_name, last_name, logout } = useAuthStore();
   const router = useRouter();
   ///temporary
   const logoutHandler = async () => {
@@ -23,7 +23,9 @@ const UserCard: React.FC = () => {
     >
       <div>
         <p className="text-lg text-gray-800">Hello,</p>
-        <h2 className="text-primary">{username}</h2>
+        <h2 className="text-primary">
+          {first_name} {last_name}
+        </h2>
       </div>
       <div className="flex size-14 items-center justify-center rounded-full bg-profile bg-auto">
         <p className="font-poppins text-2xl font-semibold text-white">A</p>

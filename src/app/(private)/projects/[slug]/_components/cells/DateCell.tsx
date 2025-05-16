@@ -11,7 +11,7 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { TaskParams } from '@/types/task';
-import { formatDate } from '@/utils/dataFormatting';
+import { formatDate } from '@/utils/dateFormatting';
 
 const DateCell: React.FC<CellContext<TaskParams, string | null>> = ({
   getValue,

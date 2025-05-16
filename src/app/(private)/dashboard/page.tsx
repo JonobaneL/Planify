@@ -1,3 +1,7 @@
+import { Suspense } from 'react';
+
+import Loader from '@/components/Loader';
+
 import ProjectsList from './_components/ProjectsList';
 import Schedule from './_components/Schedule';
 import UserCard from './_components/UserCard';
@@ -15,7 +19,17 @@ export default function Home() {
         </p>
       </header>
       <section className="h-full w-full space-y-4 pl-8">
-        <ProjectsList />
+        <div className="relative grid h-full w-full auto-rows-min grid-cols-[repeat(auto-fit,minmax(250px,1fr))] items-stretch gap-4 rounded-t-3xl bg-primary-5 p-4">
+          <Suspense
+            fallback={
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                <Loader />
+              </div>
+            }
+          >
+            <ProjectsList />
+          </Suspense>
+        </div>
       </section>
       <section className="space-y-4 pr-8">
         <UserCard />
