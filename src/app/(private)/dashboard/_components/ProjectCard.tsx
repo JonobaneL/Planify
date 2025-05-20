@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { FaRegStar, FaStar } from 'react-icons/fa6';
 import { LuSquareKanban, LuTable2 } from 'react-icons/lu';
 
+import dayjs from '@/lib/dayjs';
 import { Project } from '@/types/projects';
 
 type CardProps = {
@@ -34,13 +35,8 @@ const ProjectCard: React.FC<CardProps> = ({ project }) => {
         </div>
 
         <div className="mt-4 flex items-center justify-between">
-          {/* <p className="text-sm text-gray-600">1 month ago</p> */}
           <p className="text-sm text-gray-600">
-            {new Date(project.createdAt).toLocaleDateString('en-gb', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-            })}
+            {dayjs(project.createdAt).fromNow()}
           </p>
           <button>
             {false ? (

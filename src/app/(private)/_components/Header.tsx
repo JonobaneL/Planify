@@ -7,6 +7,7 @@ import {
 
 import ActionButton from './ActionButton';
 import InviteUser from './InviteUser';
+import UserBadge from './UserBadge';
 
 const Header = () => {
   return (
@@ -28,6 +29,7 @@ const Header = () => {
         <button className="h-fit rounded p-1.5 hover:bg-gray-100">
           <LuCircleHelp size={20} className="text-primary" />
         </button>
+        <UserBadge />
       </nav>
     </header>
   );

@@ -1,6 +1,7 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import axios, { AxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { LuCircleUser, LuLockKeyhole, LuMail } from 'react-icons/lu';
@@ -9,6 +10,7 @@ import { z } from 'zod';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useAuthStore } from '@/stores/auth';
+import { User } from '@/types/user';
 
 import PasswordStrength from './PasswordStrength';
 import { signUpSchema } from '../utils/formSchema';
@@ -20,6 +22,7 @@ const SignUpForm: React.FC = () => {
     register,
     handleSubmit,
     watch,
+    setError,
     formState: { errors },
   } = useForm<FormParams>({
     resolver: zodResolver(signUpSchema),
@@ -27,16 +30,25 @@ const SignUpForm: React.FC = () => {
   });
   const router = useRouter();
 
-  const signup = useAuthStore((state) => state.signup);
+  const setUser = useAuthStore((state) => state.setUser);
   const submitHandler = async (data: FormParams) => {
-    await signup({
-      first_name: data.firstName,
-      last_name: data.lastName,
-      email: data.email,
-      username: data.username,
-      password: data.confirmPassword,
-    });
-    router.push('/');
+    try {
+      const res = await axios.post<User>('/auth/signup', {
+        first_name: data.firstName,
+        last_name: data.lastName,
+        email: data.email,
+        username: data.username,
+        password: data.confirmPassword,
+      });
+      setUser(res.data);
+      router.push('/dashboard');
+    } catch (e) {
+      console.error(e);
+      const { response } = e as AxiosError<{ message: string }>;
+      setError('root', {
+        message: response?.data?.message,
+      });
+    }
   };
 
   const password = watch('password');
@@ -85,9 +97,16 @@ const SignUpForm: React.FC = () => {
         type="password"
         icon={<LuLockKeyhole className="text-primary-80" size={18} />}
       />
-      <Button size="lg" className="mx-auto mt-6 block w-[60%]">
-        Sign Up
-      </Button>
+      <div className="mt-6">
+        {errors.root && (
+          <p className="text-center text-sm text-red-600">
+            {errors.root.message}
+          </p>
+        )}
+        <Button size="lg" className="mx-auto mt-3 block w-[60%]">
+          Sign Up
+        </Button>
+      </div>
     </form>
   );
 };

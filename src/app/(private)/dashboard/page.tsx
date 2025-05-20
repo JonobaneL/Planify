@@ -6,7 +6,7 @@ import ProjectsList from './_components/ProjectsList';
 import Schedule from './_components/Schedule';
 import UserCard from './_components/UserCard';
 
-export default function Home() {
+export default function Dashboard() {
   return (
     <main className="grid h-full grid-cols-[1fr_360px] grid-rows-[auto_1fr] gap-4 pt-6">
       <header className="col-span-2 mx-8">

@@ -1,6 +1,7 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import axios, { AxiosError } from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
@@ -10,6 +11,7 @@ import { z } from 'zod';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useAuthStore } from '@/stores/auth';
+import { User } from '@/types/user';
 
 const logInSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
@@ -22,19 +24,29 @@ const LogInForm: React.FC = () => {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors },
   } = useForm<FormParams>({
     resolver: zodResolver(logInSchema),
     mode: 'onChange',
   });
   const router = useRouter();
-  const login = useAuthStore((state) => state.login);
+  const setUser = useAuthStore((state) => state.setUser);
   const submitHandler = async (data: FormParams) => {
     try {
-      await login(data.email, data.password);
+      const { email, password } = data;
+      const res = await axios.post<User>('/auth/login', {
+        email,
+        password,
+      });
+      setUser(res.data);
       router.push('/dashboard');
     } catch (e) {
       console.error(e);
+      const { response } = e as AxiosError<{ message: string }>;
+      setError('root', {
+        message: response?.data?.message,
+      });
     }
   };
   return (
@@ -57,9 +69,16 @@ const LogInForm: React.FC = () => {
           Forgot password?
         </Link>
       </div>
-      <Button size="lg" className="mx-auto !mt-6 block w-[60%]">
-        Log In
-      </Button>
+      <div>
+        {errors.root && (
+          <p className="text-center text-sm text-red-600">
+            {errors.root.message}
+          </p>
+        )}
+        <Button size="lg" className="mx-auto mt-3 block w-[60%]">
+          Log In
+        </Button>
+      </div>
     </form>
   );
 };

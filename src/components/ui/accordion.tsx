@@ -24,33 +24,46 @@ interface AccordionTriggerProps
   extends React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger> {
   iconPosition?: 'left' | 'right';
   iconClassName?: string;
+  underline?: boolean;
 }
 
 const AccordionTrigger = React.forwardRef<
   HTMLButtonElement,
   AccordionTriggerProps
->(({ className, children, iconClassName, iconPosition, ...props }, ref) => (
-  <AccordionPrimitive.Header className="flex border-b">
-    <AccordionPrimitive.Trigger
-      ref={ref}
-      className={cn(
-        'flex flex-1 items-center justify-between py-4 text-left text-sm font-medium transition-all [&[data-state=open]>svg]:rotate-180',
-        'data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50',
-        iconPosition === 'left' && 'flex-row-reverse justify-end gap-2',
-        className,
-      )}
-      {...props}
-    >
-      {children}
-      <ChevronDown
+>(
+  (
+    {
+      className,
+      children,
+      iconClassName,
+      iconPosition,
+      underline = true,
+      ...props
+    },
+    ref,
+  ) => (
+    <AccordionPrimitive.Header className={cn('flex', underline && 'border-b')}>
+      <AccordionPrimitive.Trigger
+        ref={ref}
         className={cn(
-          'h-4 w-4 shrink-0 text-neutral-500 transition-transform duration-200 dark:text-neutral-400',
-          iconClassName,
+          'flex flex-1 items-center justify-between py-4 text-left text-sm font-medium transition-all [&[data-state=open]>svg]:rotate-180',
+          'data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50',
+          iconPosition === 'left' && 'flex-row-reverse justify-end gap-2',
+          className,
         )}
-      />
-    </AccordionPrimitive.Trigger>
-  </AccordionPrimitive.Header>
-));
+        {...props}
+      >
+        {children}
+        <ChevronDown
+          className={cn(
+            'h-4 w-4 shrink-0 text-neutral-500 transition-transform duration-200 dark:text-neutral-400',
+            iconClassName,
+          )}
+        />
+      </AccordionPrimitive.Trigger>
+    </AccordionPrimitive.Header>
+  ),
+);
 AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName;
 
 const AccordionContent = React.forwardRef<

@@ -2,6 +2,8 @@ import Header from '@/app/(private)/_components/Header';
 import Sidebar from '@/components/Sidebar';
 import SidebarProvider from '@/context/SidebarProvider';
 
+import AuthLayer from './_components/AuthLayer';
+
 export default function PrivateLayout({
   children,
 }: {
@@ -18,6 +20,7 @@ export default function PrivateLayout({
           </div>
         </div>
       </div>
+      <AuthLayer />
     </SidebarProvider>
   );
 }
