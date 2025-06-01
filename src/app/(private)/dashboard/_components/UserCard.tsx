@@ -1,5 +1,6 @@
 'use client';
 
+import Avatar from '@/components/Avatar';
 import { useAuthStore } from '@/stores/auth';
 
 const UserCard: React.FC = () => {
@@ -13,11 +14,7 @@ const UserCard: React.FC = () => {
           {first_name} {last_name}
         </h2>
       </div>
-      <div className="flex size-14 items-center justify-center rounded-full bg-profile bg-auto">
-        <p className="font-poppins text-2xl font-semibold text-white">
-          {first_name?.[0]}
-        </p>
-      </div>
+      <Avatar name={`${first_name?.[0]}${last_name?.[0]}`} />
     </div>
   );
 };

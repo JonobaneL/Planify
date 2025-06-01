@@ -18,8 +18,8 @@ const Sidebar = () => {
   const { isOpen, toggleSidebar } = useSidebarContext();
   const navRoutes = [
     {
-      title: 'Home',
-      link: '/',
+      title: 'Dashboard',
+      link: '/dashboard',
       icon: <LuHouse />,
       exact: true,
     },
@@ -41,24 +41,28 @@ const Sidebar = () => {
   ];
   return (
     <div
-      className={`${isOpen ? 'w-60 pb-5' : 'w-16 pb-3'} relative flex-[0_0_auto] bg-primary`}
+      className={`${isOpen ? 'w-60 pb-5' : 'w-16 pb-3'} relative flex-[0_0_auto] bg-primary-60 shadow`}
     >
-      <div className="flex h-14 items-center justify-center px-5">
+      <div className="flex h-14 items-center justify-center">
         {!isOpen ? (
-          <p className="font-semibold text-white">P</p>
+          <div className="flex size-9 items-center justify-center rounded-full bg-white">
+            <p className="font-bold text-primary">P</p>
+          </div>
         ) : (
-          <p className="font-medium text-white">Planify</p>
+          <div className="rounded-full bg-white px-8 py-1.5">
+            <p className="font-semibold text-primary">Planify</p>
+          </div>
         )}
       </div>
       <button
-        className="absolute -right-2.5 top-16 flex size-5 items-center justify-center rounded-full bg-primary"
+        className="absolute -right-2.5 top-16 flex size-5 items-center justify-center rounded-full border border-white bg-primary-60 shadow"
         onClick={toggleSidebar}
       >
         <CgArrowsExchange className="text-white" size={18} />
       </button>
       <div
         className={cn(
-          `flex flex-col items-center gap-0.5`,
+          `flex flex-col items-center`,
           isOpen ? 'px-4 pb-5' : 'px-3 pb-3',
         )}
       >

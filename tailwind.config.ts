@@ -24,7 +24,7 @@ export default {
         primary: '#15367b',
         'primary-120': '#0F1D40',
         'primary-80': '#255eda',
-        'primary-60': '#4b7de7',
+        'primary-60': '#1949aa',
         'primary-50': '#7c9fe9',
         'primary-10': '#edf3f8',
         'primary-5': '#f3f6fc',

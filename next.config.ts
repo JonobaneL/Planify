@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/auth/:path*',
-        destination: 'http://localhost:8080/auth/:path*',
+        destination: 'http://localhost:8080/auth/:path*', //for docker change to server:8080
       },
       {
         source: '/api/:path*',

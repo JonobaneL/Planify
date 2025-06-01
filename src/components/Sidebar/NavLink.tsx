@@ -18,8 +18,15 @@ type NavLinkProps = {
   title: string;
   link: string;
   exact?: boolean;
+  textStyles?: string;
 };
-const NavLink = ({ icon, title, link, exact = false }: NavLinkProps) => {
+const NavLink = ({
+  icon,
+  title,
+  link,
+  exact = false,
+  textStyles,
+}: NavLinkProps) => {
   const { isOpen } = useSidebarContext();
   const path = usePathname();
   const isActive = exact ? path === link : path.startsWith(link);
@@ -37,7 +44,7 @@ const NavLink = ({ icon, title, link, exact = false }: NavLinkProps) => {
           <TooltipTrigger asChild>
             <div
               className={cn(
-                `group flex min-h-9 items-center rounded text-white transition-colors duration-75 hover:bg-white/10 hover:text-white`,
+                `group flex min-h-9 items-center rounded-md text-white transition-colors duration-75 hover:bg-white/10 hover:text-white`,
                 styles,
                 isActive ? 'text-white' : 'text-white/70',
               )}
@@ -46,8 +53,9 @@ const NavLink = ({ icon, title, link, exact = false }: NavLinkProps) => {
               {isOpen && (
                 <p
                   className={cn(
-                    'text-white/70 transition-colors duration-75 group-hover:text-white',
+                    'truncate font-poppins text-sm font-normal text-white/70 transition-colors duration-75 group-hover:text-white',
                     isActive ? 'text-white' : 'text-white/70',
+                    textStyles,
                   )}
                 >
                   {title}

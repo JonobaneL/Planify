@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { LuLogOut, LuSettings, LuUser } from 'react-icons/lu';
 
+import Avatar from '@/components/Avatar';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -24,7 +25,7 @@ const OPTIONS = [
 ];
 
 const UserBadge: React.FC = () => {
-  const { first_name, logout } = useAuthStore();
+  const { first_name, last_name, logout } = useAuthStore();
   const router = useRouter();
 
   const logoutHandler = async () => {
@@ -38,9 +39,11 @@ const UserBadge: React.FC = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="outline-none">
-        <div className="flex size-10 items-center justify-center rounded-full bg-profile bg-auto text-lg font-semibold text-white">
-          {first_name?.[0]}
-        </div>
+        <Avatar
+          name={`${first_name?.[0]}${last_name?.[0]}`}
+          className="size-10"
+          textStyles="text-lg font-semibold "
+        />
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" sideOffset={16} className="w-48">
         {OPTIONS.map((option) => (

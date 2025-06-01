@@ -1,0 +1,99 @@
+'use client';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Controller, useForm } from 'react-hook-form';
+import { LuPlus } from 'react-icons/lu';
+
+import { Button } from '@/components/ui/button';
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { useAuthStore } from '@/stores/auth';
+
+import { createProject } from './actions';
+import Members from './Members';
+import { formSchema, ProjectForm } from './schema';
+import ViewSelect from './ViewSelect';
+
+const NewProjectModal: React.FC = () => {
+  const userId = useAuthStore((state) => state.id);
+  const { register, handleSubmit, control, formState } = useForm<ProjectForm>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      view: 'table',
+      description: null,
+    },
+  });
+  const onSubmit = async (data: ProjectForm) => {
+    try {
+      // TODO: add some response handling
+      await createProject(data, userId);
+    } catch (e) {
+      // TODO: same for error handling
+      console.error(e);
+    }
+  };
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button className="h-fit rounded-full" variant="outline">
+          <LuPlus />
+          New Project
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="p-0 sm:rounded-2xl">
+        <DialogHeader className="flex flex-row items-start justify-between space-y-0 p-6 pb-0">
+          <DialogTitle className="text-3xl text-primary">
+            New Project
+          </DialogTitle>
+          <DialogDescription className="sr-only" />
+        </DialogHeader>
+        <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
+          <div className="space-y-4 px-6">
+            <Input placeholder="Project Name" {...register('name')} />
+            <Controller
+              name="view"
+              control={control}
+              render={({ field }) => (
+                <ViewSelect value={field.value} onChange={field.onChange} />
+              )}
+            />
+
+            <div className="space-y-2">
+              <p className="text-gray-700">Description</p>
+              <textarea
+                {...register('description')}
+                placeholder="Add some details (optional)"
+                className="max-h-[10rem] min-h-12 w-full rounded-md border px-3 py-2 font-figtree text-sm outline-none focus:ring-1 focus:ring-primary-80"
+              />
+            </div>
+          </div>
+          <div className="border-t px-6 pt-4">
+            <Members />
+          </div>
+          <DialogFooter className="justify-end p-6 pt-0">
+            <DialogClose asChild>
+              <Button
+                size="lg"
+                className="text-base"
+                type="submit"
+                disabled={formState.isSubmitting || !formState.isValid}
+              >
+                Create
+              </Button>
+            </DialogClose>
+          </DialogFooter>
+        </form>
+      </DialogContent>
+    </Dialog>
+  );
+};
+
+export default NewProjectModal;
