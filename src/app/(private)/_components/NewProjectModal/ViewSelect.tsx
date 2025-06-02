@@ -10,8 +10,8 @@ type SelectProps = {
 const ViewSelect: React.FC<SelectProps> = ({ value, onChange }) => {
   return (
     <div className="space-y-2">
-      <p>What view you prefer?</p>
-      <div className="flex h-12 gap-1">
+      <p className="text-gray-700">What view you prefer?</p>
+      <div className="flex h-12 gap-2">
         <button
           type="button"
           onClick={() => onChange('table')}

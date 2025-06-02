@@ -15,6 +15,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import { useAuthStore } from '@/stores/auth';
 
 import { createProject } from './actions';
@@ -48,9 +49,9 @@ const NewProjectModal: React.FC = () => {
           New Project
         </Button>
       </DialogTrigger>
-      <DialogContent className="p-0 sm:rounded-2xl">
+      <DialogContent className="w-full max-w-[520px] p-0 sm:rounded-2xl">
         <DialogHeader className="flex flex-row items-start justify-between space-y-0 p-6 pb-0">
-          <DialogTitle className="text-3xl text-primary">
+          <DialogTitle className="font-poppins text-3xl text-primary">
             New Project
           </DialogTitle>
           <DialogDescription className="sr-only" />
@@ -68,10 +69,10 @@ const NewProjectModal: React.FC = () => {
 
             <div className="space-y-2">
               <p className="text-gray-700">Description</p>
-              <textarea
+              <Textarea
                 {...register('description')}
                 placeholder="Add some details (optional)"
-                className="max-h-[10rem] min-h-12 w-full rounded-md border px-3 py-2 font-figtree text-sm outline-none focus:ring-1 focus:ring-primary-80"
+                className="max-h-[10rem] min-h-12"
               />
             </div>
           </div>
