@@ -39,7 +39,9 @@ serverInstance.interceptors.response.use(
       originalRequest._retry = true;
 
       try {
-        await serverInstance.post('/auth/refresh');
+        const res = await serverInstance.post('/auth/refresh');
+        const accessToken = res.data.accessToken;
+        originalRequest.headers['Authorization'] = `Bearer ${accessToken}`;
         return serverInstance(originalRequest);
       } catch (refreshErr) {
         console.error('Refresh failed:', refreshErr);
