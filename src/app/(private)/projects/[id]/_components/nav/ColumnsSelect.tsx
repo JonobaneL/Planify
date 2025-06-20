@@ -1,5 +1,4 @@
 'use client';
-import { useState } from 'react';
 import { LuPencilLine } from 'react-icons/lu';
 
 import { Button } from '@/components/ui/button';
@@ -9,22 +8,18 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
-import { tableColumns } from '@/data/mockColumns';
+import { COLUMNS } from '@/data/mockColumns';
+
+import { useTableStore } from '../../store';
 
 const EditNavItem = () => {
-  const [checked, setChecked] = useState(tableColumns);
-  const onChangeHandler = (value: string) => {
-    setChecked((p) => {
-      if (p.includes(value)) return p.filter((item) => item !== value);
-      return [...p, value];
-    });
-  };
-  const allCheckedHandler = () => {
-    setChecked((p) => {
-      if (p.length === tableColumns.length) return [];
-      return tableColumns;
-    });
-  };
+  const { columnVisibility, setColumnVisibility, toggleAllColumns } =
+    useTableStore();
+
+  const checkedLength = Object.values(columnVisibility).filter(
+    (item) => item,
+  ).length;
+  const isAllSelected = checkedLength === Object.keys(columnVisibility).length;
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -40,24 +35,26 @@ const EditNavItem = () => {
         <div className="mb-1 flex items-center gap-2">
           <label className="flex w-fit cursor-pointer items-center gap-2 text-sm">
             <Checkbox
-              checked={checked.length === tableColumns.length}
-              onCheckedChange={allCheckedHandler}
+              checked={isAllSelected}
+              onCheckedChange={() => toggleAllColumns(!isAllSelected)}
             />
             All columns
           </label>
-          {checked.length > 0 && (
-            <p className="text-xs">{checked.length} selected</p>
+          {checkedLength > 0 && (
+            <p className="text-xs">{checkedLength} selected</p>
           )}
         </div>
         <ul>
-          {tableColumns.map((column, index) => (
+          {COLUMNS.map((column, index) => (
             <li key={index}>
               <label className="flex min-h-8 cursor-pointer items-center gap-2 rounded px-2.5 py-1 text-sm hover:bg-primary-10">
                 <Checkbox
-                  checked={checked.includes(column)}
-                  onCheckedChange={() => onChangeHandler(column)}
+                  checked={columnVisibility[column.key] ?? true}
+                  onCheckedChange={(value) =>
+                    setColumnVisibility(column.key, Boolean(value))
+                  }
                 />
-                {column}
+                {column.label}
               </label>
             </li>
           ))}

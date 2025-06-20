@@ -17,15 +17,20 @@ import { TaskParams } from '@/types/task';
 
 import { columnsDef } from './columnsDef';
 import TasksTableFooter from './TasksTableFooter';
+import { useTableStore } from '../../store';
 
 type TableProps = {
   tasks: TaskParams[];
 };
 
 const TasksTable: React.FC<TableProps> = ({ tasks }) => {
+  const columnVisibility = useTableStore((state) => state.columnVisibility);
   const table = useReactTable({
     data: tasks,
     columns: columnsDef,
+    state: {
+      columnVisibility,
+    },
     getCoreRowModel: getCoreRowModel(),
   });
   const headers = table.getHeaderGroups();

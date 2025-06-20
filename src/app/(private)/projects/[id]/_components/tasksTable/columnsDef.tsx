@@ -10,6 +10,19 @@ import AssigneeCell from '../cells/AssigneeCell';
 import DateCell from '../cells/DateCell';
 import StatusCell from '../cells/StatusCell';
 import TitleCell from '../cells/TitleCell';
+// import { LuEllipsisVertical } from 'react-icons/lu';
+
+export const COLUMNS = [
+  'select',
+  'title',
+  'slug',
+  'assignee',
+  'status',
+  'type',
+  'priority',
+  'due_date',
+  'assigned_user',
+];
 
 export const columnsDef = [
   {
@@ -44,6 +57,7 @@ export const columnsDef = [
     header: () => <div className="px-2">Title</div>,
     size: '20rem',
     cell: (props: CellContext<TaskParams, string>) => <TitleCell {...props} />,
+    enableHiding: false,
   },
   {
     accessorKey: 'slug',
@@ -54,6 +68,13 @@ export const columnsDef = [
   {
     accessorKey: 'status',
     header: () => <div className="px-2">Status</div>,
+    cell: (props: CellContext<TaskParams, StatusParams>) => (
+      <StatusCell {...props} options={statuses} />
+    ),
+  },
+  {
+    accessorKey: 'type',
+    header: () => <div className="px-2">Type</div>,
     cell: (props: CellContext<TaskParams, StatusParams>) => (
       <StatusCell {...props} options={statuses} />
     ),
@@ -71,7 +92,7 @@ export const columnsDef = [
     cell: (props: CellContext<TaskParams, string | null>) => (
       <DateCell {...props} />
     ),
-    size: 120,
+    size: 140,
   },
   {
     accessorKey: 'assigned_user',

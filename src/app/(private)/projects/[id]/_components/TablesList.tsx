@@ -1,31 +1,52 @@
-'use client';
-
 import { Accordion } from '@/components/ui/accordion';
-import { useTasksStore } from '@/stores/tasks';
+import { serverInstance } from '@/lib/serverAxios';
+import { TaskParams } from '@/types/task';
+import { generateQueryString } from '@/utils/generateQueryString';
 
 import TaskAccordion from './TaskAccordion';
 import TasksTable from './tasksTable';
-import { groupTasksByType } from '../utils';
+import { searchParamsCache } from '../_utils/searchParams';
 
-const TablesList: React.FC<{ projectId: string }> = ({ projectId }) => {
-  const tasks = useTasksStore((state) => state.tasks);
+type Group = {
+  type: string;
+  count: number;
+  tasks: TaskParams[];
+};
 
-  const groupedTasks = groupTasksByType(tasks, projectId);
-  const keys = Object.keys(groupedTasks);
-  return (
-    <Accordion type="multiple" className="space-y-2" defaultValue={[keys[0]]}>
-      {keys.map((key) => (
-        <TaskAccordion
-          key={key}
-          title={key}
-          tasksLength={groupedTasks[key].length}
-          value={key}
-        >
-          <TasksTable tasks={groupedTasks[key]} />
-        </TaskAccordion>
-      ))}
-    </Accordion>
-  );
+const TablesList: React.FC<{
+  projectId: string;
+}> = async ({ projectId }) => {
+  try {
+    const params = searchParamsCache.all();
+    const query = generateQueryString({ ...params, projectId });
+    const res = await serverInstance.get<Group[]>(`/tasks${query}`);
+    const groups = res.data;
+    const accordionKey = `accordion-${query}`;
+    console.log(groups);
+
+    return (
+      <Accordion
+        type="multiple"
+        className="space-y-2"
+        defaultValue={['0']}
+        key={accordionKey}
+      >
+        {groups.map((group, index) => (
+          <TaskAccordion
+            key={group.type}
+            title={group.type}
+            tasksLength={group.count}
+            value={index.toString()}
+          >
+            <TasksTable tasks={group.tasks} />
+          </TaskAccordion>
+        ))}
+      </Accordion>
+    );
+  } catch (err) {
+    console.error(err);
+    return <div className="p-4 text-red-500">Failed to load tasks.</div>;
+  }
 };
 
 export default TablesList;
