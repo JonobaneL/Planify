@@ -29,19 +29,26 @@ const EditNavItem = () => {
         </Button>
       </PopoverTrigger>
       <PopoverContent align="end" className="rounded-xl">
-        <p className="mb-4 font-poppins text-sm font-medium text-gray-800">
-          Display columns
-        </p>
+        <div className="mb-4 flex items-center justify-between">
+          <p className="font-poppins text-sm font-medium text-gray-800">
+            Display columns
+          </p>
+          <Button variant="outline" size="xs" className="border" disabled>
+            Save as view
+          </Button>
+        </div>
+
         <div className="mb-1 flex items-center gap-2">
-          <label className="flex w-fit cursor-pointer items-center gap-2 text-sm">
+          <label className="flex w-fit cursor-pointer items-center gap-2 text-sm font-medium">
             <Checkbox
               checked={isAllSelected}
               onCheckedChange={() => toggleAllColumns(!isAllSelected)}
+              className="size-[18px]"
             />
             All columns
           </label>
           {checkedLength > 0 && (
-            <p className="text-xs">{checkedLength} selected</p>
+            <p className="text-sm text-gray-600">{checkedLength} selected</p>
           )}
         </div>
         <ul>
@@ -53,6 +60,7 @@ const EditNavItem = () => {
                   onCheckedChange={(value) =>
                     setColumnVisibility(column.key, Boolean(value))
                   }
+                  className="size-[18px]"
                 />
                 {column.label}
               </label>

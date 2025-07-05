@@ -11,7 +11,7 @@ const Header: React.FC<HeaderProps> = ({ task }) => {
   return (
     <div className="flex justify-between">
       <div className="flex gap-8">
-        <p className="text-sm">{task.id}</p>
+        <p className="text-sm">{task.id.slice(0, 8)}</p>
         <p className="text-sm">
           Created by{' '}
           <span className="cursor-pointer text-primary">johndoe</span> 15 min

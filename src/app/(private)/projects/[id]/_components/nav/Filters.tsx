@@ -23,7 +23,7 @@ const FilterNavItem = () => {
       </PopoverTrigger>
       <PopoverContent align="end" className="w-fit rounded-xl">
         <div className="mb-4 flex items-center justify-between">
-          <p className="text-grey-800 font-poppins text-sm font-medium">
+          <p className="text-grey-800 font-poppins text-sm font-medium tracking-wide">
             Filters
           </p>
           <div className="flex gap-1">

@@ -13,14 +13,9 @@ serverInstance.interceptors.request.use(
   async (config) => {
     const cookieStore = await cookies();
 
-    const cookieString = cookieStore
-      .getAll()
-      .map((cookie) => `${cookie.name}=${cookie.value}`)
-      .join('; ');
+    const token = cookieStore.get('access_token')?.value;
+    if (token) config.headers['Authorization'] = `Bearer ${token}`;
 
-    if (cookieString) {
-      config.headers['Cookie'] = cookieString;
-    }
     return config;
   },
   (error) => Promise.reject(error),

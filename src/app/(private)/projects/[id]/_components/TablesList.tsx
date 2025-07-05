@@ -1,6 +1,5 @@
 import { Accordion } from '@/components/ui/accordion';
 import { serverInstance } from '@/lib/serverAxios';
-import { TaskParams } from '@/types/task';
 import { generateQueryString } from '@/utils/generateQueryString';
 
 import TaskAccordion from './TaskAccordion';
@@ -8,9 +7,10 @@ import TasksTable from './tasksTable';
 import { searchParamsCache } from '../_utils/searchParams';
 
 type Group = {
-  type: string;
+  id: string;
+  name: string;
   count: number;
-  tasks: TaskParams[];
+  orderIndex: number;
 };
 
 const TablesList: React.FC<{
@@ -19,10 +19,9 @@ const TablesList: React.FC<{
   try {
     const params = searchParamsCache.all();
     const query = generateQueryString({ ...params, projectId });
-    const res = await serverInstance.get<Group[]>(`/tasks${query}`);
+    const res = await serverInstance.get<Group[]>(`/projects/groups?${query}`);
     const groups = res.data;
     const accordionKey = `accordion-${query}`;
-    console.log(groups);
 
     return (
       <Accordion
@@ -33,12 +32,12 @@ const TablesList: React.FC<{
       >
         {groups.map((group, index) => (
           <TaskAccordion
-            key={group.type}
-            title={group.type}
+            key={group.name}
+            title={group.name}
             tasksLength={group.count}
             value={index.toString()}
           >
-            <TasksTable tasks={group.tasks} />
+            <TasksTable group={group.id} projectId={projectId} />
           </TaskAccordion>
         ))}
       </Accordion>

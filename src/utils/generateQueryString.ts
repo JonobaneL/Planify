@@ -11,5 +11,5 @@ export const generateQueryString = (
     )
     .join('&');
 
-  return query ? `?${query}` : '';
+  return query ? query : '';
 };

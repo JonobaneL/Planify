@@ -6,6 +6,7 @@ import { LuPlus } from 'react-icons/lu';
 
 import ClearButton from '@/components/ClearButton';
 import StatusSelect from '@/components/StatusSelect';
+import { secureInstance } from '@/lib/axios';
 import { StatusParams } from '@/types/status';
 import { TaskParams } from '@/types/task';
 
@@ -17,15 +18,30 @@ type StatusCellProps = {
 const StatusCell: React.FC<StatusCellProps> = ({
   getValue,
   options,
+  row,
+  column,
   cleanButton = false,
 }) => {
   const initialStatus = getValue();
+
+  const updateStatus = async (status: StatusParams) => {
+    setStatus(status);
+    const taskId = row.original.id;
+    const columnId = `${column.id}Id`;
+    try {
+      await secureInstance.patch(`/tasks/${taskId}`, {
+        [columnId]: status.id,
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
   //temporary state
   const [status, setStatus] = useState<StatusParams | null>(initialStatus);
 
   return (
-    <StatusSelect options={options} onValueChange={setStatus}>
+    <StatusSelect options={options} onValueChange={updateStatus}>
       {status === null ? (
         <div className="h-full p-1">
           <button className="flex h-full w-full items-center justify-center rounded-sm opacity-0 transition-all duration-150 hover:border hover:opacity-100">

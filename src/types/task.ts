@@ -7,10 +7,13 @@ export type TaskParams = {
   projectId: string;
   assigned_user?: string;
   status: StatusParams | string;
+  statusId: string | string;
   priority?: StatusParams | null;
+  priorityId?: string | null;
   estimation?: number | null;
   slug: string;
-  type: string;
+  type?: StatusParams | null;
+  typeId: string;
   due_date?: string | null;
   created_by?: string;
   created_at?: string;
