@@ -2,6 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
 import { useForm } from 'react-hook-form';
 import { LuLockKeyhole, LuMail } from 'react-icons/lu';
@@ -9,6 +10,8 @@ import { z } from 'zod';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { handleAuthError } from '@/utils/authErrors';
+import { DASHBOARD_PAGE } from '@/utils/constants';
 
 const logInSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
@@ -27,19 +30,27 @@ const LogInForm: React.FC = () => {
     resolver: zodResolver(logInSchema),
     mode: 'onChange',
   });
+  const router = useRouter();
   const submitHandler = async (data: FormParams) => {
     try {
       const { email, password } = data;
-      await signIn('credentials', {
+      const res = await signIn('credentials', {
         email,
         password,
-        redirect: true,
-        callbackUrl: '/dashboard',
+        redirect: false,
       });
+      if (res?.error) {
+        const error = handleAuthError(res.error);
+        setError('root', {
+          message: error,
+        });
+      }
+      router.push(DASHBOARD_PAGE);
     } catch (e: unknown) {
       console.error(e);
       setError('root', {
-        message: e instanceof Error ? e.message : 'An unexpected error occurred',
+        message:
+          e instanceof Error ? e.message : 'An unexpected error occurred',
       });
     }
   };

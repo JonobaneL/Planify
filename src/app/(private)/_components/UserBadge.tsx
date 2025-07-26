@@ -1,6 +1,6 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { signOut, useSession } from 'next-auth/react';
 import { LuLogOut, LuSettings, LuUser } from 'react-icons/lu';
 
 import Avatar from '@/components/Avatar';
@@ -11,7 +11,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { useAuthStore } from '@/stores/auth';
 
 const OPTIONS = [
   {
@@ -25,13 +24,12 @@ const OPTIONS = [
 ];
 
 const UserBadge: React.FC = () => {
-  const { first_name, last_name, logout } = useAuthStore();
-  const router = useRouter();
+  const session = useSession();
+  const { first_name, last_name } = session.data?.user || {};
 
   const logoutHandler = async () => {
     try {
-      await logout();
-      router.push('/log-in');
+      await signOut({ callbackUrl: '/log-in' });
     } catch (e) {
       console.error(e);
     }

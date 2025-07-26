@@ -1,5 +1,6 @@
 'use client';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useSession } from 'next-auth/react';
 import { Controller, useForm } from 'react-hook-form';
 import { LuPlus } from 'react-icons/lu';
 
@@ -16,7 +17,6 @@ import {
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { useAuthStore } from '@/stores/auth';
 
 import { createProject } from './actions';
 import Members from './Members';
@@ -24,7 +24,8 @@ import { formSchema, ProjectForm } from './schema';
 import ViewSelect from './ViewSelect';
 
 const NewProjectModal: React.FC = () => {
-  const userId = useAuthStore((state) => state.id);
+  const { data } = useSession();
+  const userId = data?.user?.id;
   const { register, handleSubmit, control, formState } = useForm<ProjectForm>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -35,7 +36,7 @@ const NewProjectModal: React.FC = () => {
   const onSubmit = async (data: ProjectForm) => {
     try {
       // TODO: add some response handling
-      await createProject(data, userId);
+      await createProject(data, userId!);
     } catch (e) {
       // TODO: same for error handling
       console.error(e);

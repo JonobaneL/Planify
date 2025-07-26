@@ -2,6 +2,8 @@ import axios from 'axios';
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
+import { NEXT_PUBLIC_BACKEND_URL, NEXT_PUBLIC_AUTH_SECRET } from '@/config/env';
+
 const credentialsConfig = {
   email: { label: 'Email', type: 'text', placeholder: 'email' },
   password: { label: 'Password', type: 'password' },
@@ -14,16 +16,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       credentials: credentialsConfig,
       async authorize(credentials) {
         try {
-          // Check if environment variables are set
-          if (!process.env.NEXT_PUBLIC_BACKEND_URL) {
-            console.error('NEXT_PUBLIC_BACKEND_URL is not set');
-            return null;
-          }
-
-          console.log('Attempting to authenticate user:', credentials?.email);
-
           const userResponse = await axios.post(
-            `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/verify-user`,
+            `${NEXT_PUBLIC_BACKEND_URL}/auth/verify-user`,
             {
               email: credentials?.email,
               password: credentials?.password,
@@ -35,19 +29,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             },
           );
 
-          console.log(
-            'Backend response:',
-            userResponse.status,
-            userResponse.data,
-          );
-
           const user = userResponse.data;
           if (userResponse.status === 200 && user) {
-            console.log('Authentication successful for user:', user.email);
             return user;
           }
-
-          console.log('Authentication failed: Invalid credentials');
           return null;
         } catch (err) {
           console.error('Authentication error:', err);
@@ -56,7 +41,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
     }),
   ],
-  secret: process.env.NEXT_PUBLIC_AUTH_SECRET,
+  secret: NEXT_PUBLIC_AUTH_SECRET,
   session: {
     strategy: 'jwt',
     maxAge: 24 * 60 * 60, // 24 hours
@@ -102,8 +87,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         session.user = {
           ...session.user,
           id: token.id as string,
-          firstName: token.first_name as string,
-          lastName: token.last_name as string,
+          first_name: token.first_name as string,
+          last_name: token.last_name as string,
           username: token.username as string,
           role: token.role as string,
         };

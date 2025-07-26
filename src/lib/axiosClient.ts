@@ -1,12 +1,15 @@
-import axios, { AxiosInstance, AxiosResponse, AxiosError } from "axios";
-import { signOut } from "next-auth/react";
+import axios, { AxiosInstance, AxiosResponse, AxiosError } from 'axios';
+import { signOut } from 'next-auth/react';
+
+import { NEXT_PUBLIC_BACKEND_URL } from '@/config/env';
+import { LOG_IN_PAGE } from '@/utils/constants';
 
 // Base configuration for client instance
 const baseConfig = {
-  baseURL: process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:3000/api",
+  baseURL: NEXT_PUBLIC_BACKEND_URL,
   timeout: 10000,
   headers: {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
   },
 };
 
@@ -26,19 +29,19 @@ clientAxios.interceptors.response.use(
     ) {
       try {
         await signOut({
-          callbackUrl: "/login",
+          callbackUrl: LOG_IN_PAGE,
           redirect: true,
         });
       } catch (signOutError) {
-        console.error("Client: Error during sign out:", signOutError);
-        if (typeof window !== "undefined") {
-          window.location.href = "/login";
+        console.error('Client: Error during sign out:', signOutError);
+        if (typeof window !== 'undefined') {
+          window.location.href = LOG_IN_PAGE;
         }
       }
     }
 
     return Promise.reject(error);
-  }
+  },
 );
 
 export default clientAxios;

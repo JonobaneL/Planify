@@ -1,11 +1,13 @@
+import { useSession } from 'next-auth/react';
 import { LuPlus } from 'react-icons/lu';
 
 import Avatar from '@/components/Avatar';
 import { Button } from '@/components/ui/button';
-import { useAuthStore } from '@/stores/auth';
 
 const Members: React.FC = () => {
-  const { first_name, last_name } = useAuthStore();
+  const { data } = useSession();
+  const user = data?.user;
+
   return (
     <>
       <p>Members</p>
@@ -15,9 +17,9 @@ const Members: React.FC = () => {
             <Avatar
               className="size-7"
               textStyles="text-sm font-medium"
-              name={String(first_name)}
+              name={String(user?.first_name)}
             />
-            {first_name} {last_name}
+            {user?.first_name} {user?.last_name}
           </div>
           <p className="text-sm font-semibold text-primary">Owner</p>
         </li>

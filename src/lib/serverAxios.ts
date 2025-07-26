@@ -2,8 +2,10 @@ import axios from 'axios';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
+import { BACKEND_URL } from '@/config/env';
+
 export const serverInstance = axios.create({
-  baseURL: process.env.BACKEND_URL,
+  baseURL: BACKEND_URL,
   headers: {
     'Content-Type': 'application/json',
   },
