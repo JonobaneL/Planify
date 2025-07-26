@@ -1,9 +1,9 @@
-'use client';
 import Avatar from '@/components/Avatar';
-import { useAuthStore } from '@/stores/auth';
+import { auth } from '@/lib/auth';
 
-const Members: React.FC = () => {
-  const { first_name, last_name } = useAuthStore();
+const Members: React.FC = async () => {
+  const session = await auth();
+  const user = session?.user;
   return (
     <div>
       <p className="mb-2 text-base font-medium">Members</p>
@@ -13,10 +13,10 @@ const Members: React.FC = () => {
             <Avatar
               className="size-7"
               textStyles="text-sm font-medium"
-              name={String(first_name)}
+              name={String(user?.first_name)}
             />
             <p>
-              {first_name} {last_name}
+              {user?.first_name} {user?.last_name}
             </p>
           </div>
           <p className="text-sm font-semibold text-primary">Owner</p>

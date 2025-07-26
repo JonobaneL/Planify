@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { secureInstance } from '@/lib/axios';
+import clientAxios from '@/lib/axiosClient';
 import { TaskParams } from '@/types/task';
 
 type HookResponse = {
@@ -14,7 +14,7 @@ export const useTask = (taskId: string | null): HookResponse => {
   //temporary
   const getTask = async () => {
     try {
-      const res = await secureInstance.get(`/tasks/${taskId}`);
+      const res = await clientAxios.get(`/tasks/${taskId}`);
       setTask(res.data);
       setIsLoading(false);
     } catch (err) {

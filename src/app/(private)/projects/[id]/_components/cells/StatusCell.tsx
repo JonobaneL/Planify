@@ -6,7 +6,7 @@ import { LuPlus } from 'react-icons/lu';
 
 import ClearButton from '@/components/ClearButton';
 import StatusSelect from '@/components/StatusSelect';
-import { secureInstance } from '@/lib/axios';
+import clientAxios from '@/lib/axiosClient';
 import { StatusParams } from '@/types/status';
 import { TaskParams } from '@/types/task';
 
@@ -29,7 +29,7 @@ const StatusCell: React.FC<StatusCellProps> = ({
     const taskId = row.original.id;
     const columnId = `${column.id}Id`;
     try {
-      await secureInstance.patch(`/tasks/${taskId}`, {
+      await clientAxios.patch(`/tasks/${taskId}`, {
         [columnId]: status.id,
       });
     } catch (e) {
