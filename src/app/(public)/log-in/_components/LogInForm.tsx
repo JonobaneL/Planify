@@ -1,17 +1,14 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import axios, { AxiosError } from 'axios';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { signIn } from 'next-auth/react';
 import { useForm } from 'react-hook-form';
 import { LuLockKeyhole, LuMail } from 'react-icons/lu';
 import { z } from 'zod';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { useAuthStore } from '@/stores/auth';
-import { User } from '@/types/user';
 
 const logInSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
@@ -30,22 +27,19 @@ const LogInForm: React.FC = () => {
     resolver: zodResolver(logInSchema),
     mode: 'onChange',
   });
-  const router = useRouter();
-  const setUser = useAuthStore((state) => state.setUser);
   const submitHandler = async (data: FormParams) => {
     try {
       const { email, password } = data;
-      const res = await axios.post<User>('/auth/login', {
+      await signIn('credentials', {
         email,
         password,
+        redirect: true,
+        callbackUrl: '/dashboard',
       });
-      setUser(res.data);
-      router.push('/dashboard');
-    } catch (e) {
+    } catch (e: unknown) {
       console.error(e);
-      const { response } = e as AxiosError<{ message: string }>;
       setError('root', {
-        message: response?.data?.message,
+        message: e instanceof Error ? e.message : 'An unexpected error occurred',
       });
     }
   };
