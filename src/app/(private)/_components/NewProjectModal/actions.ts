@@ -1,7 +1,7 @@
 'use server';
 import { revalidatePath } from 'next/cache';
 
-import { serverInstance } from '@/lib/serverAxios';
+import { serverAxios } from '@/lib/axiosServer';
 import { Project } from '@/types/projects';
 
 export const createProject = async (
@@ -10,7 +10,7 @@ export const createProject = async (
 ) => {
   try {
     if (!userId) return;
-    const res = await serverInstance.post('/projects', {
+    const res = await serverAxios.post('/projects', {
       ...newProject,
       createdById: userId,
     });

@@ -1,6 +1,6 @@
 import { LuLink2 } from 'react-icons/lu';
 
-import { serverInstance } from '@/lib/serverAxios';
+import serverAxios from '@/lib/axiosServer';
 
 import ProjectDropdown from './ProjectDropdown';
 import InviteModal from '../inviteModal';
@@ -8,7 +8,7 @@ import InviteModal from '../inviteModal';
 const ProjectHeader: React.FC<{ projectId: string }> = async ({
   projectId,
 }) => {
-  const res = await serverInstance.get(`/projects/${projectId}`);
+  const res = await serverAxios.get(`/projects/${projectId}`);
   const project = res.data;
   const members = 1;
   return (

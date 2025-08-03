@@ -1,5 +1,5 @@
 import { Accordion } from '@/components/ui/accordion';
-import { serverInstance } from '@/lib/serverAxios';
+import serverAxios from '@/lib/axiosServer';
 import { generateQueryString } from '@/utils/generateQueryString';
 
 import TaskAccordion from './TaskAccordion';
@@ -19,7 +19,7 @@ const TablesList: React.FC<{
   try {
     const params = searchParamsCache.all();
     const query = generateQueryString({ ...params, projectId });
-    const res = await serverInstance.get<Group[]>(`/projects/groups?${query}`);
+    const res = await serverAxios.get<Group[]>(`/projects/groups?${query}`);
     const groups = res.data;
     const accordionKey = `accordion-${query}`;
 

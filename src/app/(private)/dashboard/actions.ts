@@ -2,11 +2,11 @@
 
 import { revalidatePath } from 'next/cache';
 
-import { serverInstance } from '@/lib/serverAxios';
+import serverAxios from '@/lib/axiosServer';
 
 export const deleteProject = async (id: string) => {
   try {
-    await serverInstance.delete(`/projects/${id}`);
+    await serverAxios.delete(`/projects/${id}`);
     revalidatePath('/dashboard');
   } catch (e) {
     console.error(e);
