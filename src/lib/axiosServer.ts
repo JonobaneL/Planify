@@ -4,7 +4,7 @@ import axios, {
   AxiosResponse,
   AxiosError,
 } from 'axios';
-import { signOut } from 'next-auth/react';
+import { redirect } from 'next/navigation';
 
 import { BACKEND_URL } from '@/config/env';
 
@@ -58,18 +58,8 @@ serverAxios.interceptors.response.use(
         'Server: Authentication error detected, logging out user:',
         error.response.status,
       );
-
-      try {
-        await signOut({
-          callbackUrl: '/login',
-          redirect: true,
-        });
-      } catch (signOutError) {
-        console.error('Server: Error during sign out:', signOutError);
-        if (typeof window !== 'undefined') {
-          window.location.href = '/login';
-        }
-      }
+      // TODO: fix redirect
+      redirect('/log-in');
     }
 
     return Promise.reject(error);

@@ -42,6 +42,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     }),
   ],
   secret: NEXT_PUBLIC_AUTH_SECRET,
+  trustHost: true,
   session: {
     strategy: 'jwt',
     maxAge: 24 * 60 * 60, // 24 hours
