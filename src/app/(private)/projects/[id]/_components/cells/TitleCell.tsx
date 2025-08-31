@@ -1,13 +1,17 @@
 'use client';
 
+import { useMutation } from '@tanstack/react-query';
 import { CellContext } from '@tanstack/react-table';
 import { useQueryState } from 'nuqs';
 import { useState } from 'react';
 import { LuMessageCircle } from 'react-icons/lu';
 
-import { Input } from '@/components/ui/input';
+import { cn } from '@/lib/utils';
 import { useCommentsStore } from '@/stores/comments';
 import { TaskParams } from '@/types/task';
+
+import { updateTask } from '../../_actions/task';
+import TitleInput from '../TitleInput';
 
 const TitleCell: React.FC<CellContext<TaskParams, string>> = ({
   getValue,
@@ -21,33 +25,42 @@ const TitleCell: React.FC<CellContext<TaskParams, string>> = ({
   const getCommentsCount = useCommentsStore((state) => state.getCommentsCount);
   const commentsCount = getCommentsCount(row.original.id);
 
-  //temporary state
-  const [title, setTitle] = useState<string>(initialTitle);
   const [edit, setEdit] = useState(false);
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: (newTitle: string) =>
+      updateTask(row.original.id, row.original.projectId, {
+        title: newTitle,
+      }),
+  });
+
+  //todo:create a better loader
+
   return (
     <div
       className="group flex h-full w-full items-center justify-between gap-2 p-2"
       onClick={() => setTaskId(row.original.id)}
     >
       {edit ? (
-        <Input
-          type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          onBlur={() => setEdit(false)}
+        <TitleInput
+          title={initialTitle}
+          onChange={(value) => mutate(value)}
           className="h-full rounded-sm px-1"
-          autoFocus
+          onClose={() => setEdit(false)}
         />
       ) : (
         <p
-          className="max-w-full truncate rounded-sm p-0.5 ring-gray-300 transition-all duration-100 hover:ring-1"
+          className={cn(
+            'max-w-full truncate rounded-sm p-0.5 ring-gray-300 transition-all duration-100 hover:ring-1',
+            isPending && 'pointer-events-none animate-pulse',
+          )}
           onClick={(e) => {
             e.stopPropagation();
             setEdit(true);
           }}
-          title={title}
+          title={initialTitle}
         >
-          {title}
+          {initialTitle}
         </p>
       )}
       {commentsCount && !edit ? (

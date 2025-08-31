@@ -1,8 +1,6 @@
 import { CellContext, ColumnDef } from '@tanstack/react-table';
 
 import { Checkbox } from '@/components/ui/checkbox';
-import { mockPriorities } from '@/data/mock/priorities';
-import { statuses } from '@/data/mock/statuses';
 import { StatusParams } from '@/types/status';
 import { TaskParams } from '@/types/task';
 
@@ -10,7 +8,6 @@ import AssigneeCell from '../cells/AssigneeCell';
 import DateCell from '../cells/DateCell';
 import StatusCell from '../cells/StatusCell';
 import TitleCell from '../cells/TitleCell';
-// import { LuEllipsisVertical } from 'react-icons/lu';
 
 export const COLUMNS = [
   'select',
@@ -69,25 +66,25 @@ export const columnsDef = [
     accessorKey: 'status',
     header: () => <div className="px-2">Status</div>,
     cell: (props: CellContext<TaskParams, StatusParams>) => (
-      <StatusCell {...props} options={statuses} />
+      <StatusCell {...props} type="status" />
     ),
   },
   {
     accessorKey: 'type',
     header: () => <div className="px-2">Type</div>,
     cell: (props: CellContext<TaskParams, StatusParams>) => (
-      <StatusCell {...props} options={statuses} />
+      <StatusCell {...props} type="type" />
     ),
   },
   {
     accessorKey: 'priority',
     header: () => <div className="px-2">Priority</div>,
     cell: (props: CellContext<TaskParams, StatusParams | null>) => (
-      <StatusCell {...props} options={mockPriorities} cleanButton={true} />
+      <StatusCell {...props} type="priority" cleanButton={true} />
     ),
   },
   {
-    accessorKey: 'due_date',
+    accessorKey: 'dueDate',
     header: () => <div className="px-2">Due Date</div>,
     cell: (props: CellContext<TaskParams, string | null>) => (
       <DateCell {...props} />
