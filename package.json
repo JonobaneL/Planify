@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "cypress:open": "cypress open"
   },
   "dependencies": {
     "@hookform/resolvers": "^4.1.2",
@@ -65,6 +66,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "cypress": "^15.1.0",
     "eslint": "^9.21.0",
     "eslint-config-next": "15.1.7",
     "eslint-plugin-import": "^2.31.0",
