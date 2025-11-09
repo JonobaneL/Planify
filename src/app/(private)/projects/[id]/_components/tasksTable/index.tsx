@@ -1,4 +1,4 @@
-import { serverInstance } from '@/lib/serverAxios';
+import serverAxios from '@/lib/axiosServer';
 import { TaskParams } from '@/types/task';
 import { generateQueryString } from '@/utils/generateQueryString';
 
@@ -12,7 +12,7 @@ type TablePropsT = {
 const TasksTable: React.FC<TablePropsT> = async ({ group, projectId }) => {
   const query = generateQueryString({ typeId: group, projectId });
 
-  const res = await serverInstance.get<TaskParams[]>(`/tasks?${query}`);
+  const res = await serverAxios.get<TaskParams[]>(`/tasks?${query}`);
   const tasks = res.data;
   try {
     return <Table tasks={tasks} />;

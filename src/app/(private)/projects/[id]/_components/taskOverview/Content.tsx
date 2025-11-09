@@ -1,8 +1,9 @@
+import { useQuery } from '@tanstack/react-query';
 import { useQueryState } from 'nuqs';
 
 import Tabs from '@/components/Tabs';
 import { SheetHeader } from '@/components/ui/sheet';
-import { useTask } from '@/hooks/useTask';
+import clientAxios from '@/lib/axiosClient';
 
 import { TABS } from './constants';
 import Header from './Header';
@@ -13,7 +14,13 @@ const Content: React.FC = () => {
   const taskId = useQueryState('task')[0];
   const [tab, setTab] = useQueryState('tab', { defaultValue: TABS[0] });
 
-  const { isLoading, task } = useTask(taskId);
+  const { data: taskResponse, isLoading } = useQuery({
+    queryKey: ['task', taskId],
+    queryFn: () => clientAxios.get(`/tasks/${taskId}`),
+    enabled: !!taskId,
+  });
+
+  const task = taskResponse?.data;
 
   //temporary approach
   if (isLoading) return <div>Loading...</div>;
@@ -22,7 +29,11 @@ const Content: React.FC = () => {
     <>
       <SheetHeader className="flex flex-col gap-5 space-y-0 px-6 pb-4">
         <Header task={task} />
-        <TaskTitle title={task.title} />
+        <TaskTitle
+          title={task.title}
+          taskId={task.id}
+          projectId={task.projectId}
+        />
       </SheetHeader>
       <Tabs tab={tab || ''} onTabChange={setTab} tabs={TABS} />
       <div className="flex flex-1 flex-col overflow-auto">

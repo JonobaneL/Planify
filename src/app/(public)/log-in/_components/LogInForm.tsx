@@ -76,11 +76,14 @@ const LogInForm: React.FC = () => {
       </div>
       <div>
         {errors.root && (
-          <p className="text-center text-sm text-red-600">
+          <p
+            className="text-center text-sm text-red-600"
+            data-name="error-message"
+          >
             {errors.root.message}
           </p>
         )}
-        <Button size="lg" className="mx-auto mt-3 block w-[60%]">
+        <Button size="lg" className="mx-auto mt-3 block w-[60%]" type="submit">
           Log In
         </Button>
       </div>

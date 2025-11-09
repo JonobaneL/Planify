@@ -14,7 +14,7 @@ export type TaskParams = {
   slug: string;
   type?: StatusParams | null;
   typeId: string;
-  due_date?: string | null;
+  dueDate?: string | null;
   created_by?: string;
   created_at?: string;
   updated_at?: string;

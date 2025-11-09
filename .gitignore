@@ -39,3 +39,25 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# cypress
+# Local env and secrets
+cypress.env.json
+cypress.env.local.json
+
+# Generated artifacts
+cypress/videos/
+cypress/screenshots/
+cypress/downloads/
+cypress/reports/
+cypress/results/
+cypress/coverage/
+
+# Caches and temporary outputs
+cypress/.cache/
+cypress/.output/
+.cypress-cache/
+
+# Visual testing diffs (common plugins)
+cypress/__image_snapshots__/
+cypress/component/__image_snapshots__/

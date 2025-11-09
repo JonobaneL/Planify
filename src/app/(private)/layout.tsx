@@ -1,3 +1,5 @@
+'use client';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { SessionProvider } from 'next-auth/react';
 
 import Header from '@/app/(private)/_components/Header';
@@ -6,6 +8,8 @@ import SidebarProvider from '@/context/SidebarProvider';
 
 import AuthLayer from './_components/AuthLayer';
 
+const queryClient = new QueryClient();
+
 export default function PrivateLayout({
   children,
 }: {
@@ -13,18 +17,20 @@ export default function PrivateLayout({
 }) {
   return (
     <SidebarProvider>
-      <SessionProvider>
-        <div className="flex h-dvh max-h-dvh min-h-dvh flex-1">
-          <Sidebar />
-          <div className="h-dvh w-full flex-1 overflow-auto">
-            <Header />
-            <div className="h-[calc(100%-60px)] w-full flex-1 overflow-auto">
-              {children}
+      <QueryClientProvider client={queryClient}>
+        <SessionProvider>
+          <div className="flex h-dvh max-h-dvh min-h-dvh flex-1">
+            <Sidebar />
+            <div className="h-dvh w-full flex-1 overflow-auto">
+              <Header />
+              <div className="h-[calc(100%-60px)] w-full flex-1 overflow-auto">
+                {children}
+              </div>
             </div>
           </div>
-        </div>
-        <AuthLayer />
-      </SessionProvider>
+          <AuthLayer />
+        </SessionProvider>
+      </QueryClientProvider>
     </SidebarProvider>
   );
 }

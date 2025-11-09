@@ -1,5 +1,3 @@
-import { mockPriorities } from '@/data/mock/priorities';
-import { statuses } from '@/data/mock/statuses';
 import { StatusParams } from '@/types/status';
 import { TaskParams } from '@/types/task';
 
@@ -17,14 +15,24 @@ const TaskDetails: React.FC<DetailsProps> = ({ task }) => {
       key: 'type',
       label: 'Type',
       content: (
-        <StatusSelect options={statuses} value={task.type as StatusParams} />
+        <StatusSelect
+          value={task.type as StatusParams}
+          column="type"
+          taskId={task.id}
+          projectId={task.projectId}
+        />
       ),
     },
     {
       key: 'status',
       label: 'Status',
       content: (
-        <StatusSelect options={statuses} value={task.status as StatusParams} />
+        <StatusSelect
+          value={task.status as StatusParams}
+          column="status"
+          taskId={task.id}
+          projectId={task.projectId}
+        />
       ),
     },
     {
@@ -33,8 +41,10 @@ const TaskDetails: React.FC<DetailsProps> = ({ task }) => {
       content: (
         <StatusSelect
           label="No priority"
-          options={mockPriorities}
           value={task.priority as StatusParams}
+          column="priority"
+          taskId={task.id}
+          projectId={task.projectId}
           cleanButton
         />
       ),
@@ -42,7 +52,13 @@ const TaskDetails: React.FC<DetailsProps> = ({ task }) => {
     {
       key: 'due_date',
       label: 'Due date',
-      content: <DateSelect value={task.due_date ?? null} />,
+      content: (
+        <DateSelect
+          value={task.dueDate ?? null}
+          taskId={task.id}
+          projectId={task.projectId}
+        />
+      ),
     },
     {
       key: 'assigned_user',
