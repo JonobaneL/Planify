@@ -1,18 +1,20 @@
 import serverAxios from '@/lib/axiosServer';
 import { TaskParams } from '@/types/task';
-import { generateQueryString } from '@/utils/generateQueryString';
+// import { generateQueryString } from '@/utils/generateQueryString';
 
 import Table from './Table';
 
 type TablePropsT = {
-  group: string;
+  group?: string;
   projectId: string;
 };
 
-const TasksTable: React.FC<TablePropsT> = async ({ group, projectId }) => {
-  const query = generateQueryString({ typeId: group, projectId });
+const TasksTable: React.FC<TablePropsT> = async ({ projectId }) => {
+  // const query = generateQueryString({ projectId });
 
-  const res = await serverAxios.get<TaskParams[]>(`/tasks?${query}`);
+  const res = await serverAxios.get<TaskParams[]>(
+    `projects/${projectId}/tasks`,
+  );
   const tasks = res.data;
   try {
     return <Table tasks={tasks} />;

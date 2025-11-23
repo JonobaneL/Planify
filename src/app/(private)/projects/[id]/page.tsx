@@ -5,8 +5,9 @@ import Loader from '@/components/Loader';
 
 import BoardNav from './_components/nav';
 import ProjectHeader from './_components/projectHeader';
-import TablesList from './_components/TablesList';
+// import TablesList from './_components/TablesList';
 import TaskOverview from './_components/taskOverview';
+import TasksTable from './_components/tasksTable';
 import { searchParamsCache } from './_utils/searchParams';
 
 const TablesPage = async ({
@@ -26,7 +27,8 @@ const TablesPage = async ({
         <BoardNav />
       </div>
       <Suspense fallback={<Loader />}>
-        <TablesList projectId={id} />
+        {/* <TablesList projectId={id} /> */}
+        <TasksTable projectId={id} />
       </Suspense>
       <TaskOverview />
     </main>

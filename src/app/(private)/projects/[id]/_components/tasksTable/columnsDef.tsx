@@ -63,17 +63,17 @@ export const columnsDef = [
     cell: ({ getValue }) => <div className="px-2">{getValue() as string}</div>,
   },
   {
-    accessorKey: 'status',
-    header: () => <div className="px-2">Status</div>,
-    cell: (props: CellContext<TaskParams, StatusParams>) => (
-      <StatusCell {...props} type="status" />
-    ),
-  },
-  {
     accessorKey: 'type',
     header: () => <div className="px-2">Type</div>,
     cell: (props: CellContext<TaskParams, StatusParams>) => (
       <StatusCell {...props} type="type" />
+    ),
+  },
+  {
+    accessorKey: 'status',
+    header: () => <div className="px-2">Status</div>,
+    cell: (props: CellContext<TaskParams, StatusParams>) => (
+      <StatusCell {...props} type="status" />
     ),
   },
   {

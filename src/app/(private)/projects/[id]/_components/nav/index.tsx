@@ -4,8 +4,8 @@ import { Button } from '@/components/ui/button';
 
 import ColumnsSelect from './ColumnsSelect';
 import Filters from './Filters';
-import GroupBy from './GroupBy';
-import LayoutSelect from './LayoutSelect';
+// import GroupBy from './GroupBy';
+// import LayoutSelect from './LayoutSelect';
 
 const BoardNav = () => {
   return (
@@ -13,8 +13,8 @@ const BoardNav = () => {
       <Button variant="ghost" size="sm" className="[&_svg]:size-[18px]">
         <LuSearch className="text-primary" /> Search
       </Button>
-      <LayoutSelect />
-      <GroupBy />
+      {/* <LayoutSelect /> */}
+      {/* <GroupBy /> */}
       <Filters />
       <ColumnsSelect />
     </div>

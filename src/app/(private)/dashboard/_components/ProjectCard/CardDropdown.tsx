@@ -17,7 +17,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 
-import { deleteProject } from '../../actions';
+import { archiveProject, deleteProject } from '../../actions';
 
 const CardDropdown: React.FC<{ projectId: string }> = ({ projectId }) => {
   const options = [
@@ -30,6 +30,7 @@ const CardDropdown: React.FC<{ projectId: string }> = ({ projectId }) => {
       name: 'Invite members',
       icon: <LuUserRoundPlus />,
       callback: () => {},
+      disabled: true,
     },
     {
       name: 'Delete',
@@ -40,7 +41,7 @@ const CardDropdown: React.FC<{ projectId: string }> = ({ projectId }) => {
     {
       name: 'Archive',
       icon: <LuArchive />,
-      callback: () => {},
+      callback: archiveProject,
     },
   ];
   return (
@@ -68,6 +69,7 @@ const CardDropdown: React.FC<{ projectId: string }> = ({ projectId }) => {
             key={option.name}
             className="gap-3 rounded-lg px-2.5 text-gray-700"
             onClick={() => option.callback(projectId)}
+            disabled={option?.disabled}
           >
             {option.icon}
             {option.name}

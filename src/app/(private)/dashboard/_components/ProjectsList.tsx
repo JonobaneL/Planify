@@ -5,7 +5,9 @@ import ProjectCard from './ProjectCard';
 
 const ProjectsList: React.FC = async () => {
   try {
-    const response = await serverAxios.get<Project[]>(`/projects`);
+    const response = await serverAxios.get<Project[]>(
+      `/projects?archived=false`,
+    );
     const projects = response.data;
 
     if (!projects) return <div>You don&apos;t have any projects</div>;

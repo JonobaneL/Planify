@@ -1,19 +1,19 @@
-export const filtesPrams = [
+export const filtersParams = [
   {
-    label: "Type",
-    params: ["Task", "Feature", "Bug"],
+    label: 'Type',
+    params: ['Task', 'Feature', 'Bug'],
   },
   {
-    label: "Priority",
-    params: ["Hight", "Medium", "Low"],
+    label: 'Priority',
+    params: ['Hight', 'Medium', 'Low'],
   },
   {
-    label: "Estimation",
+    label: 'Estimation',
     params: [1, 3, 5, 8, 12],
   },
   {
-    label: "Status",
-    params: ["Not Started", "In Progress", "In Review", "In QA", "Done"],
+    label: 'Status',
+    params: ['Not Started', 'In Progress', 'In Review', 'In QA', 'Done'],
   },
   // {
   //   label: "Assignee",
