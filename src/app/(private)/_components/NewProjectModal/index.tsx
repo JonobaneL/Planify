@@ -1,8 +1,9 @@
 'use client';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useSession } from 'next-auth/react';
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { LuPlus } from 'react-icons/lu';
+import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -19,26 +20,34 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 
 import { createProject } from './actions';
-import Members from './Members';
 import { formSchema, ProjectForm } from './schema';
-import ViewSelect from './ViewSelect';
 
 const NewProjectModal: React.FC = () => {
   const { data } = useSession();
   const userId = data?.user?.id;
-  const { register, handleSubmit, control, formState } = useForm<ProjectForm>({
+  const { register, handleSubmit, formState, reset } = useForm<ProjectForm>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      view: 'table',
-      description: null,
+      description: '',
     },
   });
   const onSubmit = async (data: ProjectForm) => {
     try {
-      // TODO: add some response handling
-      await createProject(data, userId!);
+      toast.promise(createProject(data, userId!), {
+        loading: 'Creating project...',
+        success: (data: { name: string }) => {
+          return `Project ${data.name} was created successfully`;
+        },
+        error: {
+          message: 'Failed to create new project',
+          description: 'Please try again later',
+        },
+      });
+      reset();
     } catch (e) {
-      // TODO: same for error handling
+      toast.error('Failed to create new project', {
+        description: 'Please try again later',
+      });
       console.error(e);
     }
   };
@@ -60,13 +69,6 @@ const NewProjectModal: React.FC = () => {
         <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
           <div className="space-y-4 px-6">
             <Input placeholder="Project Name" {...register('name')} />
-            <Controller
-              name="view"
-              control={control}
-              render={({ field }) => (
-                <ViewSelect value={field.value} onChange={field.onChange} />
-              )}
-            />
 
             <div className="space-y-2">
               <p className="text-gray-700">Description</p>
@@ -77,9 +79,7 @@ const NewProjectModal: React.FC = () => {
               />
             </div>
           </div>
-          <div className="border-t px-6 pt-4">
-            <Members />
-          </div>
+          {/* TODO: Add members section */}
           <DialogFooter className="justify-end p-6 pt-0">
             <DialogClose asChild>
               <Button

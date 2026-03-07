@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Figtree, Poppins } from 'next/font/google';
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
+
+import { Toaster } from '@/components/ui/sonner';
 import './globals.css';
 
 const figtree = Figtree({
@@ -32,6 +34,7 @@ export default function RootLayout({
         <NuqsAdapter>
           <div className="flex flex-1 flex-col">{children}</div>
         </NuqsAdapter>
+        <Toaster />
       </body>
     </html>
   );

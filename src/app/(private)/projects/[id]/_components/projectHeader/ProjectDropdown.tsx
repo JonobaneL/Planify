@@ -1,3 +1,4 @@
+'use client';
 import {
   LuArchive,
   LuEllipsisVertical,
@@ -9,6 +10,7 @@ import {
   LuTrendingUp,
 } from 'react-icons/lu';
 
+import { archiveProject, deleteProject } from '@/actions/projectActions';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -48,14 +50,16 @@ const third_options = [
   {
     name: 'Archive project',
     icon: <LuArchive />,
+    callback: archiveProject,
   },
   {
     name: 'Delete project',
     icon: <LuTrash />,
+    callback: deleteProject,
   },
 ];
 
-const ProjectDropdown: React.FC = () => {
+const ProjectDropdown: React.FC<{ projectId: string }> = ({ projectId }) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -94,6 +98,7 @@ const ProjectDropdown: React.FC = () => {
           <DropdownMenuItem
             key={option.name}
             className="gap-3 rounded-lg px-3 text-gray-700 focus:text-primary"
+            onClick={() => option?.callback(projectId)}
           >
             {option.icon}
             <span>{option.name}</span>

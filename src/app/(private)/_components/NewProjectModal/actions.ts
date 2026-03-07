@@ -18,5 +18,6 @@ export const createProject = async (
     return res.data;
   } catch (e) {
     console.error(e);
+    throw e;
   }
 };

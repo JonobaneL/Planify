@@ -4,10 +4,10 @@ import {
   LuArchive,
   LuEllipsisVertical,
   LuExternalLink,
-  // LuPencil,
   LuTrash,
   LuUserRoundPlus,
 } from 'react-icons/lu';
+import { toast } from 'sonner';
 
 import {
   DropdownMenu,
@@ -21,11 +21,6 @@ import { archiveProject, deleteProject } from '../../actions';
 
 const CardDropdown: React.FC<{ projectId: string }> = ({ projectId }) => {
   const options = [
-    // {
-    //   name: 'Rename',
-    //   icon: <LuPencil />,
-    //   callback: () => {},
-    // },
     {
       name: 'Invite members',
       icon: <LuUserRoundPlus />,
@@ -35,13 +30,22 @@ const CardDropdown: React.FC<{ projectId: string }> = ({ projectId }) => {
     {
       name: 'Delete',
       icon: <LuTrash />,
-      callback: deleteProject,
+      callback: (projectId: string) =>
+        toast.promise(deleteProject(projectId), {
+          loading: 'Deleting project...',
+          success: 'Project deleted successfully',
+          error: 'Failed to delete project',
+        }),
     },
-    ///not sure about this option
     {
       name: 'Archive',
       icon: <LuArchive />,
-      callback: archiveProject,
+      callback: (projectId: string) =>
+        toast.promise(archiveProject(projectId), {
+          loading: 'Archiving project...',
+          success: 'Project archived successfully',
+          error: 'Failed to archive project',
+        }),
     },
   ];
   return (
