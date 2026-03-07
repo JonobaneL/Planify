@@ -9,4 +9,5 @@ export type Project = {
   createdAt: string;
   createdById: string;
   createdBy?: User;
+  favorite?: boolean;
 };

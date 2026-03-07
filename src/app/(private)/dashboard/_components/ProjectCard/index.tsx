@@ -1,4 +1,4 @@
-import { ArrowRight, Star } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
@@ -6,6 +6,7 @@ import dayjs from '@/lib/dayjs';
 import { Project } from '@/types/projects';
 
 import CardDropdown from './CardDropdown';
+import FavoriteButton from './FavoriteButton';
 
 type CardProps = {
   project: Project;
@@ -17,7 +18,7 @@ const ProjectCard: React.FC<CardProps> = ({ project }) => {
   const randomCompleted = Math.floor(Math.random() * randomTasks);
   const randomPercentage = Math.round((randomCompleted / randomTasks) * 100);
   return (
-    <div className="flex h-full w-full cursor-pointer flex-col justify-between rounded-3xl border-2 border-gray-300 bg-white p-4">
+    <div className="flex h-full w-full max-w-[520px] cursor-pointer flex-col justify-between rounded-3xl border-2 border-gray-300 bg-white p-4">
       <div>
         <div className="flex items-center justify-between">
           <Link
@@ -27,8 +28,10 @@ const ProjectCard: React.FC<CardProps> = ({ project }) => {
             {project.name}
           </Link>
           <div className="flex items-center gap-1">
-            {/* TODO: implement favorite functionality */}
-            <Star size={18} className="text-primary" />
+            <FavoriteButton
+              projectId={project.id}
+              favorite={project.favorite}
+            />
             <CardDropdown projectId={project.id} />
           </div>
         </div>

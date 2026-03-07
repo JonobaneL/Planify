@@ -21,3 +21,14 @@ export const archiveProject = async (id: string) => {
     console.error(e);
   }
 };
+
+export const addProjectToFavorite = async (id: string, favorite: boolean) => {
+  try {
+    const res = await serverAxios.patch(`/projects/${id}`, { favorite });
+    revalidatePath('/dashboard');
+    return res.data;
+  } catch (e) {
+    console.error('Server Log:', e);
+    throw e;
+  }
+};
