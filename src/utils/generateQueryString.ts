@@ -1,6 +1,6 @@
-export const generateQueryString = (
-  params: Record<string, string | undefined | null>,
-) => {
+type QueryValue = string | number | boolean | null | undefined;
+
+export const generateQueryString = (params: Record<string, QueryValue>) => {
   const query = Object.entries(params)
     .filter(
       ([, value]) => value !== undefined && value !== null && value !== '',

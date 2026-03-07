@@ -2,12 +2,19 @@ import { Suspense } from 'react';
 
 import Loader from '@/components/Loader';
 
-import ProjectsFilters from './_components/ProjectsFilters';
+import ProjectsFilters from './_components/ProjectFilters';
 import ProjectsList from './_components/ProjectsList';
+import { projectsSearchParamsCache } from './_utils';
 // import Schedule from './_components/Schedule';
 // import UserCard from './_components/UserCard';
 
-export default function Dashboard() {
+export default async function Dashboard({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
+  const params = await searchParams;
+  projectsSearchParamsCache.parse(params);
   return (
     <main className="h-full space-y-4 px-6 pt-6">
       <header className="ml-2">
@@ -23,7 +30,7 @@ export default function Dashboard() {
         <div className="h-full w-full space-y-4 overflow-auto rounded-t-3xl bg-primary-5 p-4">
           <ProjectsFilters />
 
-          <div className="relative grid h-full w-full auto-rows-min grid-cols-[repeat(auto-fit,minmax(340px,1fr))] items-stretch gap-4">
+          <div className="relative grid h-full w-full auto-rows-min grid-cols-[repeat(auto-fit,minmax(360px,1fr))] items-stretch gap-4">
             <Suspense
               fallback={
                 <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
