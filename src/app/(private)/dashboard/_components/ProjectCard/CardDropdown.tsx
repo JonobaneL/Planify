@@ -51,7 +51,7 @@ const CardDropdown: React.FC<{ projectId: string }> = ({ projectId }) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="p-1 outline-none transition-colors">
-        <LuEllipsisVertical />
+        <LuEllipsisVertical size={18} />
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[12rem] rounded-xl">
         <DropdownMenuItem

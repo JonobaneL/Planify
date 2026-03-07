@@ -17,7 +17,7 @@ const ProjectHeader: React.FC<{ projectId: string }> = async ({
         <h3 className="font-poppins text-xl font-semibold text-primary">
           {project.name}
         </h3>
-        <p className="text-sm text-gray-600">{project.description}</p>
+        {/* <p className="text-sm text-gray-600">{project.description}</p> */}
       </div>
       <div className="flex items-center gap-2">
         <div className="flex h-9 items-center overflow-hidden rounded-full border-[1.5px] border-primary transition-shadow hover:shadow">
@@ -31,7 +31,7 @@ const ProjectHeader: React.FC<{ projectId: string }> = async ({
             <LuLink2 size={18} className="text-primary" />
           </button>
         </div>
-        <ProjectDropdown />
+        <ProjectDropdown projectId={projectId} />
       </div>
     </div>
   );
