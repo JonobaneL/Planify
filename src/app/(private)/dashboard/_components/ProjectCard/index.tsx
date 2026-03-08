@@ -24,7 +24,6 @@ const ProjectCard: React.FC<CardProps> = ({ project }) => {
   const randomTasks = Math.floor(Math.random() * 50);
   const randomCompleted = Math.floor(Math.random() * randomTasks);
   const randomPercentage = Math.round((randomCompleted / randomTasks) * 100);
-  console.log('project', project);
   const isNewProject = randomTasks === 0;
   return (
     <div className="flex h-full w-full max-w-[520px] flex-col rounded-3xl border-2 border-gray-300 bg-white p-4">

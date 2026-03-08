@@ -5,6 +5,7 @@ export const projectsSearchParamsCache = createSearchParamsCache({
   sort: parseAsString.withDefault('updatedAt'),
   order: parseAsString.withDefault('desc'),
   view: parseAsString,
+  name: parseAsString,
 });
 
 export const parseViewParam = (view: string | null) => {
