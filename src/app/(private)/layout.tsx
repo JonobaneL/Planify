@@ -19,13 +19,11 @@ export default function PrivateLayout({
     <SidebarProvider>
       <QueryClientProvider client={queryClient}>
         <SessionProvider>
-          <div className="flex h-dvh max-h-dvh min-h-dvh flex-1">
-            <Sidebar />
-            <div className="h-dvh w-full flex-1 overflow-auto">
-              <Header />
-              <div className="h-[calc(100%-60px)] w-full flex-1 overflow-auto">
-                {children}
-              </div>
+          <div className="h-dvh w-full flex-1 overflow-auto">
+            <Header />
+            <div className="flex h-[calc(100dvh-60px)] w-full flex-1 overflow-auto">
+              <Sidebar />
+              <div className="flex-1">{children}</div>
             </div>
           </div>
           <AuthLayer />

@@ -44,17 +44,16 @@ const NavLink = ({
           <TooltipTrigger asChild>
             <div
               className={cn(
-                `group flex min-h-9 items-center rounded-md text-white transition-colors duration-75 hover:bg-white/10 hover:text-white`,
+                `group flex min-h-9 items-center rounded-md transition-colors duration-75 hover:bg-primary-15`,
                 styles,
-                isActive ? 'text-white' : 'text-white/70',
+                isActive ? 'bg-primary-30 hover:bg-primary-30' : '',
               )}
             >
               {icon}
               {isOpen && (
                 <p
                   className={cn(
-                    'truncate font-poppins text-sm font-normal text-white/70 transition-colors duration-75 group-hover:text-white',
-                    isActive ? 'text-white' : 'text-white/70',
+                    'truncate text-[15px] font-medium text-gray-700 transition-colors duration-75',
                     textStyles,
                   )}
                 >
@@ -67,9 +66,9 @@ const NavLink = ({
             <TooltipContent
               side="right"
               sideOffset={20}
-              className="rounded bg-primary shadow"
+              className="rounded-md bg-gradient-to-br from-primary-60 to-primary-80 shadow"
             >
-              <p className="font-geist">{title}</p>
+              <p className="font-poppins text-sm">{title}</p>
             </TooltipContent>
           )}
         </Tooltip>

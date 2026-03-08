@@ -3,8 +3,6 @@
 import { usePathname } from 'next/navigation';
 import { LuPlus } from 'react-icons/lu';
 
-import { Button } from '@/components/ui/button';
-
 import NewProjectModal from './NewProjectModal';
 
 const ActionButton: React.FC = () => {
@@ -12,17 +10,17 @@ const ActionButton: React.FC = () => {
 
   if (path.includes('articles'))
     return (
-      <Button className="h-fit rounded-full" variant="outline">
+      <button className="flex h-10 w-fit items-center gap-2 rounded-full border border-white/20 bg-blue-400/10 px-4 text-[15px] font-medium text-white shadow-xl backdrop-blur-md transition-colors duration-200 hover:bg-blue-400/15">
         <LuPlus />
-        New Article
-      </Button>
+        <p>New Article</p>
+      </button>
     );
   if (path.includes('projects'))
     return (
-      <Button className="h-fit rounded-full" variant="outline">
+      <button className="flex h-10 w-fit items-center gap-2 rounded-full border border-white/20 bg-blue-400/10 px-4 text-[15px] font-medium text-white shadow-xl backdrop-blur-md transition-colors duration-200 hover:bg-blue-400/15">
         <LuPlus />
         New Task
-      </Button>
+      </button>
     );
   return <NewProjectModal />;
 };

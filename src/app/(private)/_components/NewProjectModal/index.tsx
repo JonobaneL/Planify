@@ -54,7 +54,7 @@ const NewProjectModal: React.FC = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="h-fit rounded-full" variant="outline">
+        <Button className="flex h-10 w-fit items-center gap-2 rounded-full border border-white/20 bg-blue-400/10 px-4 text-[15px] font-medium text-white shadow-xl backdrop-blur-md transition-colors duration-200 hover:bg-blue-400/15">
           <LuPlus />
           New Project
         </Button>
