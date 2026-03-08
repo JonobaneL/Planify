@@ -3,11 +3,12 @@ import { User } from './user';
 export type Project = {
   id: string;
   name: string;
-  slug: string | null;
+  slug: string;
   description: string | null;
-  view: 'table' | 'board';
+  favorite?: boolean;
+  archived?: boolean;
   createdAt: string;
+  updatedAt: string;
   createdById: string;
   createdBy?: User;
-  favorite?: boolean;
 };

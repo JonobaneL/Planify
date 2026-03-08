@@ -10,15 +10,17 @@ export const deleteProject = async (id: string) => {
     revalidatePath('/dashboard');
   } catch (e) {
     console.error(e);
+    throw e;
   }
 };
 
-export const archiveProject = async (id: string) => {
+export const archiveProject = async (id: string, archived: boolean) => {
   try {
-    await serverAxios.patch(`/projects/${id}`, { archived: true });
+    await serverAxios.patch(`/projects/${id}`, { archived });
     revalidatePath('/dashboard');
   } catch (e) {
     console.error(e);
+    throw e;
   }
 };
 

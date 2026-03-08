@@ -30,7 +30,7 @@ export default async function Dashboard({
         <div className="h-full w-full space-y-4 overflow-auto rounded-t-3xl bg-primary-5 p-4">
           <ProjectsFilters />
 
-          <div className="relative grid h-full w-full auto-rows-min grid-cols-[repeat(auto-fit,minmax(360px,1fr))] items-stretch gap-4">
+          <div className="relative grid h-full w-full auto-rows-min grid-cols-[repeat(auto-fill,minmax(360px,1fr))] items-stretch gap-4">
             <Suspense
               fallback={
                 <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">

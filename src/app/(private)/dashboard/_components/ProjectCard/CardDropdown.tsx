@@ -19,9 +19,13 @@ import {
 
 import { archiveProject, deleteProject } from '../../actions';
 
-const CardDropdown: React.FC<{ projectId: string }> = ({ projectId }) => {
+const CardDropdown: React.FC<{ projectId: string; archived?: boolean }> = ({
+  projectId,
+  archived,
+}) => {
   const options = [
     {
+      // TODO: Implement invite members functionality
       name: 'Invite members',
       icon: <LuUserRoundPlus />,
       callback: () => {},
@@ -38,13 +42,19 @@ const CardDropdown: React.FC<{ projectId: string }> = ({ projectId }) => {
         }),
     },
     {
-      name: 'Archive',
+      name: archived ? 'Unarchive' : 'Archive',
       icon: <LuArchive />,
       callback: (projectId: string) =>
-        toast.promise(archiveProject(projectId), {
-          loading: 'Archiving project...',
-          success: 'Project archived successfully',
-          error: 'Failed to archive project',
+        toast.promise(archiveProject(projectId, !archived), {
+          loading: archived
+            ? 'Removing project from archive...'
+            : 'Archiving project...',
+          success: archived
+            ? 'Project was removed from archive successfully'
+            : 'Project was archived successfully',
+          error: archived
+            ? 'Failed to remove project from archive'
+            : 'Failed to archive project',
         }),
     },
   ];
