@@ -30,22 +30,16 @@ const NavLink = ({
   const { isOpen } = useSidebarContext();
   const path = usePathname();
   const isActive = exact ? path === link : path.startsWith(link);
-  const getStyles = () => {
-    if (isOpen) {
-      return 'gap-2 px-3 py-1';
-    }
-    return 'gap-0 p-1 justify-center size-9';
-  };
-  const styles = getStyles();
+
   return (
-    <Link href={link} className={isOpen ? 'w-full' : 'w-fit'}>
+    <Link href={link}>
       <TooltipProvider>
         <Tooltip delayDuration={300} disableHoverableContent={true}>
           <TooltipTrigger asChild>
             <div
               className={cn(
-                `group flex min-h-9 items-center rounded-md transition-colors duration-75 hover:bg-primary-15`,
-                styles,
+                `group flex h-9 items-center rounded-md transition-all duration-300 hover:bg-primary-15`,
+                isOpen ? 'gap-2 px-3 py-1' : 'gap-0 px-[9px]',
                 isActive ? 'bg-primary-30 hover:bg-primary-30' : '',
               )}
             >

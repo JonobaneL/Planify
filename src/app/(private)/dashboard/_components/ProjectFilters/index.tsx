@@ -32,7 +32,7 @@ const ProjectsFilters: React.FC = () => {
             <ToggleGroupItem
               key={option.value}
               value={option.value}
-              className="rounded-lg border-gray-300 !bg-transparent px-3 text-[15px] !text-gray-800 shadow-none aria-checked:border-primary"
+              className="rounded-lg border-gray-300 !bg-transparent px-3 text-[15px] !text-gray-800 shadow-sm aria-checked:border-primary"
             >
               {option.label}
             </ToggleGroupItem>

@@ -12,14 +12,12 @@ const ProjectsSearch: React.FC = () => {
     shallow: false,
   });
 
-  // 1. Local state for immediate input feedback
   const [text, setText] = useState(query);
 
-  // 2. Debounce effect
   useEffect(() => {
     const timer = setTimeout(() => {
       setQuery(text);
-    }, 500); // Wait 500ms after last keystroke
+    }, 500);
 
     return () => clearTimeout(timer);
   }, [text, setQuery]);
@@ -27,7 +25,7 @@ const ProjectsSearch: React.FC = () => {
     <div className="w-64">
       <Input
         placeholder="Search projects..."
-        className="rounded-full"
+        className="rounded-full border-gray-300 shadow-sm"
         icon={<SearchIcon size={18} className="text-primary" />}
         value={text}
         onChange={(e) => setText(e.target.value)}

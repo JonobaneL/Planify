@@ -26,7 +26,7 @@ const ProjectCard: React.FC<CardProps> = ({ project }) => {
   const randomPercentage = Math.round((randomCompleted / randomTasks) * 100);
   const isNewProject = randomTasks === 0;
   return (
-    <div className="flex h-full w-full max-w-[520px] flex-col rounded-3xl border-2 border-gray-300 bg-white p-4">
+    <div className="flex h-full w-full max-w-[520px] flex-col rounded-3xl border border-gray-300 bg-white p-4 shadow-sm">
       <div className="flex items-center justify-between">
         <Link
           href={`/projects/${project.id}`}

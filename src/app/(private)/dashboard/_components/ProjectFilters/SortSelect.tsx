@@ -36,7 +36,7 @@ const SortSelect: React.FC = () => {
     <div className="flex items-center gap-2">
       <p className="text-[15px] font-semibold text-gray-800">Sort:</p>
       <Select value={`${sort}-${order}`} onValueChange={handleSortChange}>
-        <SelectTrigger className="w-52 border-gray-400">
+        <SelectTrigger className="w-52 rounded-lg border-gray-300">
           <SelectValue placeholder="Select a sort order" />
         </SelectTrigger>
         <SelectContent>

@@ -22,6 +22,14 @@ import { Textarea } from '@/components/ui/textarea';
 import { createProject } from './actions';
 import { formSchema, ProjectForm } from './schema';
 
+const PROJECT_PLACEHOLDERS = [
+  'Q4 Marketing Blitz',
+  'Product Launch: Gamma',
+  'Cross-Platform UI Redesign',
+  'Client Pitch: Project Apollo',
+  'Beta Feature Testing',
+];
+
 const NewProjectModal: React.FC = () => {
   const { data } = useSession();
   const userId = data?.user?.id;
@@ -59,7 +67,7 @@ const NewProjectModal: React.FC = () => {
           New Project
         </Button>
       </DialogTrigger>
-      <DialogContent className="w-full max-w-[520px] p-0 sm:rounded-2xl">
+      <DialogContent className="w-full max-w-[520px] gap-2 overflow-hidden p-0 sm:rounded-2xl">
         <DialogHeader className="flex flex-row items-start justify-between space-y-0 p-6 pb-0">
           <DialogTitle className="font-poppins text-3xl text-primary">
             New Project
@@ -67,24 +75,44 @@ const NewProjectModal: React.FC = () => {
           <DialogDescription className="sr-only" />
         </DialogHeader>
         <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
-          <div className="space-y-4 px-6">
-            <Input placeholder="Project Name" {...register('name')} />
+          <div className="px-6">
+            <label
+              className="text-[15px] text-gray-600"
+              htmlFor="projectNameFiled"
+            >
+              Project Name
+            </label>
+            <Input
+              id="projectNameFiled"
+              placeholder={`e.g., ${
+                PROJECT_PLACEHOLDERS[
+                  Math.floor(Math.random() * PROJECT_PLACEHOLDERS.length)
+                ]
+              }`}
+              className="mb-4 mt-1 h-[42px] rounded-lg"
+              {...register('name')}
+            />
 
-            <div className="space-y-2">
-              <p className="text-gray-700">Description</p>
+            <div className="space-y-1">
+              <label
+                className="text-[15px] text-gray-600"
+                htmlFor="projectDescriptionFiled"
+              >
+                Description
+              </label>
               <Textarea
+                id="projectDescriptionFiled"
                 {...register('description')}
-                placeholder="Add some details (optional)"
-                className="max-h-[10rem] min-h-12"
+                placeholder="Add project goals, timeline, and deliverables (optional)"
+                className="max-h-[10rem] min-h-12 rounded-lg"
               />
             </div>
           </div>
           {/* TODO: Add members section */}
-          <DialogFooter className="justify-end p-6 pt-0">
+          <DialogFooter className="justify-end border-t border-primary-20 bg-primary-5 px-6 py-4">
             <DialogClose asChild>
               <Button
-                size="lg"
-                className="text-base"
+                className="w-28 rounded-lg bg-gradient-to-br from-primary-60 to-primary-80 font-poppins text-[15px] disabled:opacity-80"
                 type="submit"
                 disabled={formState.isSubmitting || !formState.isValid}
               >

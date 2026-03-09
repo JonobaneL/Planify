@@ -12,18 +12,18 @@ const NAV_ROUTES = [
   {
     title: 'Dashboard',
     link: '/dashboard',
-    icon: <LuHouse size={18} className="text-gray-600" />,
+    icon: <LuHouse size={18} className="flex-shrink-0 text-gray-600" />,
     exact: true,
   },
   {
     title: 'My Work',
     link: '/my-work',
-    icon: <LuCalendarCheck size={18} className="text-gray-600" />,
+    icon: <LuCalendarCheck size={18} className="flex-shrink-0 text-gray-600" />,
   },
   {
     title: 'Notes',
     link: '/articles',
-    icon: <LuNotebookPen size={18} className="text-gray-600" />,
+    icon: <LuNotebookPen size={18} className="flex-shrink-0 text-gray-600" />,
   },
 ];
 
@@ -33,14 +33,14 @@ const Sidebar = () => {
   return (
     <div className="pt-6">
       <div
-        className={`${isOpen ? 'w-60 px-4' : 'w-16 px-3'} flex h-full flex-col rounded-tr-lg bg-primary-5 py-4`}
+        className={`${isOpen ? 'w-60 px-4' : 'w-[60px] px-3'} flex h-full flex-col rounded-tr-lg bg-primary-5 py-4 transition-all duration-500`}
       >
         <div className="flex flex-1 flex-col gap-1">
           {NAV_ROUTES.map((route, index) => (
             <NavItem key={index} {...route} />
           ))}
         </div>
-        <div className="flex w-full justify-end">
+        <div className="flex justify-end">
           <button
             className="flex size-9 items-center justify-center rounded-md hover:bg-primary-15"
             onClick={toggleSidebar}

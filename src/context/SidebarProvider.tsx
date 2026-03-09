@@ -1,10 +1,11 @@
-"use client";
-import { createContext, useContext, useState } from "react";
+'use client';
+import { createContext, useContext, useState } from 'react';
 
 type SidebarContextParams = {
   isOpen: boolean;
   toggleSidebar: () => void;
 };
+//TODO: changed to zustand, use local storage
 const SidebarContext = createContext<SidebarContextParams | null>(null);
 export const useSidebarContext = () => {
   return useContext(SidebarContext) as SidebarContextParams;
